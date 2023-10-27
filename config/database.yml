@@ -6,8 +6,8 @@ default: &default
 development:
   <<: *default
   database: movies_development
-  username: development
-  password: development
+  username: labber
+  password: labber
 
   host: localhost
 
@@ -16,8 +16,8 @@ development:
 test:
   <<: *default
   database: movies_test
-  username: development
-  password: development
+  username: labber
+  password: labber
 
 production:
   <<: *default

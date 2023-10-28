@@ -1,6 +1,13 @@
+import CategoryList from "./CategoryList";
+
 const TopNavBar = () => {
   return (
-    <h1>Top Nav Bar</h1>
+    <div>
+      <span>Rotten Potatoes</span>
+      <CategoryList />
+      <button>Login</button>
+      <button>Register</button>
+    </div>
   )
 }
 

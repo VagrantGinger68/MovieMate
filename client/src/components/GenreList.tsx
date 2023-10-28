@@ -7,31 +7,31 @@ const GenreList: React.FC = () => {
   const [genres, setGenres] = useState([]);
 
   const getGenres = () => {
-  const url = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json'
-    }
-  };
-  
-  fetch(url, options)
-    .then(res => res.json())
-    .then(json => setGenres(json.genres))
-    .catch(err => console.error('error:' + err));
-}
+    const url = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+      }
+    };
+
+    fetch(url, options)
+      .then(res => res.json())
+      .then(json => setGenres(json.genres))
+      .catch(err => console.error('error:' + err));
+  }
 
   useEffect(() => {
     getGenres()
-  },[])
-  
+  }, [])
+
   console.log(genres);
-  
+
   return (
     <>
-      {genres.map(({name, id}) => {
+      {genres.map(({ name, id }) => {
         return (
-          <GenreListItem key={id} name={name}/>
+          <GenreListItem key={id} name={name} />
         )
       })}
     </>

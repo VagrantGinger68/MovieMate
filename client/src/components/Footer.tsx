@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <h1>Footer</h1>
+    <h1>All Rights Reserved! &copy; 2023</h1>
   )
 }
 

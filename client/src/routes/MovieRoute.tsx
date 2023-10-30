@@ -8,9 +8,14 @@ const MovieRoute = () => {
     tagline: '',
     overview: '',
     runtime: 0,
+    vote_average: 0,
     genres: [{name: ''}],
   });
-  const [cast, setCast] = useState([{profile_path: '', name: ''}]);
+  const [cast, setCast] = useState([{
+    profile_path: '', 
+    name: '', 
+    character: ''
+  }]);
 
   const getMovie = () => {
     const url = 'https://api.themoviedb.org/3/movie/575264?language=en-US';
@@ -50,6 +55,7 @@ const MovieRoute = () => {
   }, [])
 
   console.log(movie);
+  console.log(cast);
   
 
   return (
@@ -57,6 +63,7 @@ const MovieRoute = () => {
       <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
       <h1>{movie.original_title}</h1>
       <h4>{movie.release_date}</h4>
+      <p>{movie.vote_average * 10}%</p>
       <h4>{movie.tagline}</h4>
       <p>{movie.overview}</p>
       {movie.genres.map((genre, index) => {
@@ -70,6 +77,7 @@ const MovieRoute = () => {
           <div key={index}>
           <img src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />
           <h1>{castMember.name}</h1>
+          <h2>as {castMember.character}</h2>
           </div>
         )
       }).slice(0,9)}

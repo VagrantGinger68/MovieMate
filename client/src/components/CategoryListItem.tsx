@@ -6,7 +6,7 @@ interface CategoryListProps {
 
 const CategoryListItem: React.FC<CategoryListProps> = ({ name }) => {
   return (
-    <p>{name}</p>
+    <span>{name}</span>
   )
 };
 

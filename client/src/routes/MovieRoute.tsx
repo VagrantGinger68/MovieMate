@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import MovieList from "../components/MovieList";
 
 const MovieRoute = () => {
   const [movie, setMovie] = useState({
@@ -16,6 +17,10 @@ const MovieRoute = () => {
     name: '', 
     character: ''
   }]);
+
+  const [crew, setCrew] = useState([{job: '', name: ''}]);
+
+  const [similarMovies, setSimilarMovies] = useState([]);
 
   const getMovie = () => {
     const url = 'https://api.themoviedb.org/3/movie/575264?language=en-US';
@@ -45,18 +50,42 @@ const MovieRoute = () => {
 
     fetch(url, options)
       .then(res => res.json())
-      .then(json => setCast(json.cast))
+      .then(json => {
+        setCast(json.cast);
+        setCrew(json.crew);
+      })
       .catch(err => console.error('error:' + err));
+  }
+
+  const getSimilarMovies = () => {
+    const url = 'https://api.themoviedb.org/3/movie/575264/similar?language=en-US&page=1';
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: import.meta.env.VITE_TMDB_API_KEY
+      }
+    };
+    
+    fetch(url, options)
+    .then(res => res.json())
+    .then(json => setSimilarMovies(json.results))
+    .catch(err => console.error('error:' + err));
   }
 
   useEffect(() => {
     getMovie()
     getCast()
+    getSimilarMovies()
   }, [])
 
   console.log(movie);
   console.log(cast);
+  console.log(crew);
+  console.log(similarMovies);
   
+  const director = crew.filter((crewDirector) => crewDirector.job === 'Director');
+  const writer = crew.filter(crewWriter => crewWriter.job === "Writer");
 
   return (
     <>
@@ -71,6 +100,19 @@ const MovieRoute = () => {
           <h2 key={index}>{genre.name}</h2>
         )
       })}
+      <h2>Director(s):</h2>
+      {director.map(headCrew => {
+        return (
+          <h3>{headCrew.name}</h3>
+        )
+      })}
+          <h2>Writer(s):</h2>
+      {writer.map(headCrew => {
+        return (
+          <h3>{headCrew.name}</h3>
+        )
+      })}
+
       <p>Runtime: {movie.runtime} minutes</p>
       {cast.map((castMember, index) => {
         return (
@@ -81,6 +123,8 @@ const MovieRoute = () => {
           </div>
         )
       }).slice(0,9)}
+
+      <MovieList movies={similarMovies} />
 
     </>
   )

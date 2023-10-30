@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 
 const MovieRoute = () => {
-
-  const [movie, setMovie] = useState({});
-  const [cast, setCast] = useState([{}]);
+  const [movie, setMovie] = useState({
+    original_title: '',
+    poster_path: '',
+    release_date: '',
+    tagline: '',
+    overview: '',
+    runtime: 0,
+    genres: [{name: ''}],
+  });
+  const [cast, setCast] = useState([{profile_path: '', name: ''}]);
 
   const getMovie = () => {
     const url = 'https://api.themoviedb.org/3/movie/575264?language=en-US';
@@ -52,18 +59,18 @@ const MovieRoute = () => {
       <h4>{movie.release_date}</h4>
       <h4>{movie.tagline}</h4>
       <p>{movie.overview}</p>
-      {/* {movie.genres.map((genre) => {
+      {movie.genres.map((genre, index) => {
         return (
-          <h2>{genre.name}</h2>
+          <h2 key={index}>{genre.name}</h2>
         )
-      })} */}
+      })}
       <p>Runtime: {movie.runtime} minutes</p>
-      {cast.map((castMember) => {
+      {cast.map((castMember, index) => {
         return (
-          <>
-          <img src={`https://image.tmdb.org/t/p/w200/${castMember.profile_path}`} />
+          <div key={index}>
+          <img src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />
           <h1>{castMember.name}</h1>
-          </>
+          </div>
         )
       }).slice(0,9)}
 

@@ -124,15 +124,15 @@ const MovieRoute = () => {
         )
       })}
       <h2>Director(s):</h2>
-      {director.map(headCrew => {
+      {director.map((headCrew, index) => {
         return (
-          <h3>{headCrew.name}</h3>
+          <h3 key={index}>{headCrew.name}</h3>
         )
       })}
       <h2>Writer(s):</h2>
-      {writer.map(headCrew => {
+      {writer.map((headCrew, index) => {
         return (
-          <h3>{headCrew.name}</h3>
+          <h3 key={index}>{headCrew.name}</h3>
         )
       })}
 

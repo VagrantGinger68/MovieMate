@@ -10,17 +10,19 @@ const MovieRoute = () => {
     overview: '',
     runtime: 0,
     vote_average: 0,
-    genres: [{name: ''}],
+    genres: [{ name: '' }],
   });
   const [cast, setCast] = useState([{
-    profile_path: '', 
-    name: '', 
+    profile_path: '',
+    name: '',
     character: ''
   }]);
 
-  const [crew, setCrew] = useState([{job: '', name: ''}]);
+  const [crew, setCrew] = useState([{ job: '', name: '' }]);
 
   const [similarMovies, setSimilarMovies] = useState([]);
+
+  const [trailer, setTrailer] = useState([{ type: '', site: '', key: '' }]);
 
   const getMovie = () => {
     const url = 'https://api.themoviedb.org/3/movie/575264?language=en-US';
@@ -66,26 +68,47 @@ const MovieRoute = () => {
         Authorization: import.meta.env.VITE_TMDB_API_KEY
       }
     };
-    
+
     fetch(url, options)
-    .then(res => res.json())
-    .then(json => setSimilarMovies(json.results))
-    .catch(err => console.error('error:' + err));
+      .then(res => res.json())
+      .then(json => setSimilarMovies(json.results))
+      .catch(err => console.error('error:' + err));
+  }
+
+  const getTrailer = () => {
+    const url = 'https://api.themoviedb.org/3/movie/575264/videos?language=en-US';
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: import.meta.env.VITE_TMDB_API_KEY
+      }
+    };
+
+    fetch(url, options)
+      .then(res => res.json())
+      .then(json => setTrailer(json.results))
+      .catch(err => console.error('error:' + err));
   }
 
   useEffect(() => {
     getMovie()
     getCast()
     getSimilarMovies()
+    getTrailer()
   }, [])
 
-  console.log(movie);
-  console.log(cast);
-  console.log(crew);
-  console.log(similarMovies);
-  
+  // console.log(movie);
+  // console.log(cast);
+  // console.log(crew);
+  // console.log(similarMovies);
+  // console.log(trailer);
+
   const director = crew.filter((crewDirector) => crewDirector.job === 'Director');
   const writer = crew.filter(crewWriter => crewWriter.job === "Writer");
+  const firstTrailer = trailer.find((trailer) => trailer.type === "Trailer" && trailer.site === "YouTube")
+
+  console.log(firstTrailer);
 
   return (
     <>
@@ -106,7 +129,7 @@ const MovieRoute = () => {
           <h3>{headCrew.name}</h3>
         )
       })}
-          <h2>Writer(s):</h2>
+      <h2>Writer(s):</h2>
       {writer.map(headCrew => {
         return (
           <h3>{headCrew.name}</h3>
@@ -117,12 +140,12 @@ const MovieRoute = () => {
       {cast.map((castMember, index) => {
         return (
           <div key={index}>
-          <img src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />
-          <h1>{castMember.name}</h1>
-          <h2>as {castMember.character}</h2>
+            <img src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />
+            <h1>{castMember.name}</h1>
+            <h2>as {castMember.character}</h2>
           </div>
         )
-      }).slice(0,9)}
+      }).slice(0, 9)}
 
       <MovieList movies={similarMovies} />
 

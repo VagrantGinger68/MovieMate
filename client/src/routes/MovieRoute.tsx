@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import MovieList from "../components/MovieList";
+import YouTube, { YouTubeProps } from 'react-youtube';
+
+
 
 const MovieRoute = () => {
   const [movie, setMovie] = useState({
@@ -110,8 +113,24 @@ const MovieRoute = () => {
 
   console.log(firstTrailer);
 
+  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+
+  const opts: YouTubeProps['opts'] = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+
   return (
     <>
+      <YouTube videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} />;
+
       <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
       <h1>{movie.original_title}</h1>
       <h4>{movie.release_date}</h4>
@@ -148,6 +167,7 @@ const MovieRoute = () => {
       }).slice(0, 9)}
 
       <MovieList movies={similarMovies} />
+
 
     </>
   )

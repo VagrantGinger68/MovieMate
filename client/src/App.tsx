@@ -10,6 +10,11 @@ const App = () => {
 
   const [movieId, setMovieId] = useState(0);
   const [categoryName, setCategoryName] = useState("");
+  const [genre, setGenre] = useState(0);
+
+  const changeGenre = (newGenre: number) => {
+    setGenre(newGenre)
+  };
 
   console.log(movieId);
 
@@ -23,14 +28,14 @@ const App = () => {
 
   return (
     <div>
-      <TopNavBar changeCategoryName={changeCategoryName} />
+      <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
       {/* {!movieId &&
         <HomeRoute changeMovieId={changeMovieId} />
       }
       {movieId &&
         <MovieRoute id={movieId} changeMovieId={changeMovieId} />
       } */}
-      <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} />
+      <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre}/>
       <Footer />
     </div>
   )

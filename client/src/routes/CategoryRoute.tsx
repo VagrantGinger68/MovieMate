@@ -9,15 +9,16 @@ interface CategoryProp {
   changeMovieId: Function;
   categoryName: string;
   genre: number;
+  changeGenre: Function;
 }
 
-const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName }) => {
+const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName, changeGenre, genre }) => {
 
-  const [genre, setGenre] = useState(0);
+  // const [genre, setGenre] = useState(0);
 
-  const changeGenre = (newGenre:number ) => {
-    setGenre(newGenre)
-  };
+  // const changeGenre = (newGenre:number ) => {
+  //   setGenre(newGenre)
+  // };
   
   let categoryComponent = null;
 

@@ -2,9 +2,13 @@ import CategoryList from "./CategoryList";
 
 interface CategoryStateProp {
   changeCategoryName: Function;
+  changeGenre: Function;
 }
 
-const TopNavBar: React.FC<CategoryStateProp> = ({ changeCategoryName }) => {
+const TopNavBar: React.FC<CategoryStateProp> = ({ 
+  changeCategoryName, 
+  changeGenre 
+}) => {
   return (
     <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full">
       <div className="mb-2 sm:mb-0">
@@ -15,7 +19,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({ changeCategoryName }) => {
           Rotten Potatoes
         </a>
       </div>
-      <CategoryList changeCategoryName={changeCategoryName} />
+      <CategoryList changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
       <div>
         <a
           href="#"

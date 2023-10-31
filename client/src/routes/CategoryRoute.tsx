@@ -13,15 +13,12 @@ interface CategoryProp {
 
 const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName }) => {
 
-  const [genre, setGenre] = useState(Number);
+  const [genre, setGenre] = useState(0);
 
   const changeGenre = (newGenre:number ) => {
     setGenre(newGenre)
   };
-
-  console.log(genre);
   
-
   let categoryComponent = null;
 
   switch (categoryName) {
@@ -29,13 +26,13 @@ const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName }) 
       categoryComponent = <PopularList changeMovieId={changeMovieId} genre={genre}/>;
       break;
     case 'Upcoming':
-      categoryComponent = <UpcomingList changeMovieId={changeMovieId} />;
+      categoryComponent = <UpcomingList changeMovieId={changeMovieId} genre={genre}/>;
       break;
     case 'Now Playing':
-      categoryComponent = <NowPlayingList changeMovieId={changeMovieId} />;
+      categoryComponent = <NowPlayingList changeMovieId={changeMovieId} genre={genre}/>;
       break;
     case 'Top Rated':
-      categoryComponent = <TopRatedList changeMovieId={changeMovieId} />;
+      categoryComponent = <TopRatedList changeMovieId={changeMovieId} genre={genre}/>;
       break;
   }
 

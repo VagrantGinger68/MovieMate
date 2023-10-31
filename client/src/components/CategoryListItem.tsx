@@ -7,7 +7,7 @@ interface CategoryListProps {
 
 const CategoryListItem: React.FC<CategoryListProps> = ({ name, changeCategoryName }) => {
   return (
-    <span onClick={() => changeCategoryName(name)}>{name}</span>
+    <span style={{cursor:"pointer"}} onClick={() => changeCategoryName(name)}>{name}</span>
   )
 };
 

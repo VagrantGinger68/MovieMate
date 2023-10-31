@@ -3,13 +3,21 @@ import MovieList from "../MovieList";
 
 interface IdStateProp {
   changeMovieId: Function;
+  genre: number;
 }
 
-const UpcomingList: React.FC<IdStateProp> = ({ changeMovieId }) => {
+const UpcomingList: React.FC<IdStateProp> = ({ changeMovieId, genre }) => {
   const [movies, setMovies] = useState([]);
 
+  let tempURL = "";
+  if (genre) {
+    tempURL = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=2023-11-01&release_date.lte=2023-12-01&region=CA&with_genres=${genre}`
+  } else {
+    tempURL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=2023-11-01&release_date.lte=2023-12-01&region=CA'
+  }
+
   const getMovies = () => {
-    const url = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1';
+    const url = tempURL;
     const options = {
       method: 'GET',
       headers: {
@@ -26,7 +34,7 @@ const UpcomingList: React.FC<IdStateProp> = ({ changeMovieId }) => {
 
   useEffect(() => {
     getMovies()
-  }, [])
+  }, [genre])
 
   console.log(movies);
 

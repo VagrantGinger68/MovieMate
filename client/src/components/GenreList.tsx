@@ -2,7 +2,11 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import GenreListItem from "./GenreListItem";
 
-const GenreList: React.FC = () => {
+interface GenreProp {
+  changeGenre: Function;
+}
+
+const GenreList: React.FC<GenreProp> = ({ changeGenre }) => {
 
   const [genres, setGenres] = useState([]);
 
@@ -32,7 +36,7 @@ const GenreList: React.FC = () => {
     <>
       {genres.map(({ name, id }) => {
         return (
-          <GenreListItem key={id} name={name} />
+          <GenreListItem key={id} name={name} changeGenre={changeGenre} id={id}/>
         )
       })}
     </>

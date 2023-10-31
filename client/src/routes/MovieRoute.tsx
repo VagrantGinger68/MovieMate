@@ -112,7 +112,6 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
   // console.log(trailer);
 
   const director = crew.filter((crewDirector) => crewDirector.job === 'Director');
-  const writer = crew.filter(crewWriter => crewWriter.job === "Writer");
   const firstTrailer = trailer.find((trailer) => trailer.type === "Trailer" && trailer.site === "YouTube");
 
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -135,7 +134,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
       <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
       <h1>{movie.original_title}</h1>
       <h4>{movie.release_date}</h4>
-      <p>{movie.vote_average * 10}%</p>
+      <p>{(movie.vote_average * 10).toFixed(0)}%</p>
       <h4>{movie.tagline}</h4>
       <p>{movie.overview}</p>
       {movie.genres.map((genre, index) => {
@@ -149,13 +148,6 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
           <h3 key={index}>{headCrew.name}</h3>
         )
       })}
-      <h2>Writer(s):</h2>
-      {writer.map((headCrew, index) => {
-        return (
-          <h3 key={index}>{headCrew.name}</h3>
-        )
-      })}
-
       <p>Runtime: {movie.runtime} minutes</p>
       {cast.map((castMember, index) => {
         return (

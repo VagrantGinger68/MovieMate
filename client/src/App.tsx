@@ -7,7 +7,7 @@ import MovieRoute from './routes/MovieRoute';
 
 const App = () => {
 
-  const [movieId, setMovieId] = useState(238);
+  const [movieId, setMovieId] = useState(0);
 
   console.log(movieId);
 
@@ -18,8 +18,12 @@ const App = () => {
   return (
     <div>
       <TopNavBar />
-      <HomeRoute changeMovieId={changeMovieId} />
-      <MovieRoute id={movieId} changeMovieId={changeMovieId} />
+      {!movieId &&
+        <HomeRoute changeMovieId={changeMovieId} />
+      }
+      {movieId &&
+        <MovieRoute id={movieId} changeMovieId={changeMovieId} />
+      }
       <Footer />
     </div>
   )

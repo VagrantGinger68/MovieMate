@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 interface CategoryListProps {
   name: string;
@@ -6,14 +7,18 @@ interface CategoryListProps {
   changeGenre: Function;
 }
 
-const CategoryListItem: React.FC<CategoryListProps> = ({ 
-  name, 
+const CategoryListItem: React.FC<CategoryListProps> = ({
+  name,
   changeCategoryName,
-  changeGenre 
+  changeGenre
 }) => {
   return (
-    <span style={{cursor:"pointer"}} onClick={() => {changeCategoryName(name);
-      changeGenre(0)}}>{name}</span>
+    <Link to="/categories">
+      <span style={{ cursor: "pointer" }} onClick={() => {
+        changeCategoryName(name);
+        changeGenre(0)
+      }}>{name}</span>
+    </Link>
   )
 };
 

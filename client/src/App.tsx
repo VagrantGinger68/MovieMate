@@ -36,12 +36,37 @@ const App = () => {
       {movieId &&
         <MovieRoute id={movieId} changeMovieId={changeMovieId} />
       } */}
+
       {/* <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre}/>
       <Footer /> */}
+
       <Router>
-      <Routes>
-            <Route path="/" element={<HomeRoute changeMovieId={changeMovieId}/>} />
-      </Routes>
+
+        <Routes>
+          <Route path="/" element={
+            <>
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <HomeRoute changeMovieId={changeMovieId} />
+              <Footer />
+            </>
+          } />
+          <Route path="/categories" element={
+            <>
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre} />
+              <Footer />
+            </>
+          } />
+          <Route path="/movie" element={
+            <>
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              {movieId &&
+                <MovieRoute id={movieId} changeMovieId={changeMovieId} />
+              }
+              <Footer />
+            </>
+          } />
+        </Routes>
       </Router>
     </div>
   )

@@ -10,16 +10,16 @@ interface IdStateProp {
 
 const HomeRoute: React.FC<IdStateProp> = ({ changeMovieId }) => {
   return (
-    <>
-      <h1>Popular</h1>
+    <div className="pt-24 px-8">
+      <h1 className="text-3xl font-bold">Popular</h1>
       <PopularList changeMovieId={changeMovieId} />
-      <h1>Upcoming</h1>
+      <h1 className="text-3xl font-bold">Upcoming</h1>
       <UpcomingList changeMovieId={changeMovieId} />
-      <h1>Now Playing</h1>
+      <h1 className="text-3xl font-bold">Now Playing</h1>
       <NowPlayingList changeMovieId={changeMovieId} />
-      <h1>Top Rated</h1>
+      <h1 className="text-3xl font-bold">Top Rated</h1>
       <TopRatedList changeMovieId={changeMovieId} />
-    </>
+    </div>
   )
 }
 

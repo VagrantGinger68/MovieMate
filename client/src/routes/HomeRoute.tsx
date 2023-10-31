@@ -3,17 +3,22 @@ import PopularList from "../components/Categories/PopularList";
 import TopRatedList from "../components/Categories/TopRatedList";
 import UpcomingList from "../components/Categories/UpcomingList";
 
-const HomeRoute = () => {
+interface IdStateProp {
+  changeMovieId: Function;
+}
+
+
+const HomeRoute: React.FC<IdStateProp> = ({ changeMovieId }) => {
   return (
     <>
       <h1>Popular</h1>
-      <PopularList />
+      <PopularList changeMovieId={changeMovieId} />
       <h1>Upcoming</h1>
-      <UpcomingList />
+      <UpcomingList changeMovieId={changeMovieId} />
       <h1>Now Playing</h1>
-      <NowPlayingList />
+      <NowPlayingList changeMovieId={changeMovieId} />
       <h1>Top Rated</h1>
-      <TopRatedList />
+      <TopRatedList changeMovieId={changeMovieId} />
     </>
   )
 }

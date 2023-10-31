@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import MovieList from "../MovieList";
 
-const NowPlayingList = () => {
+interface IdStateProp {
+  changeMovieId: Function;
+}
+
+const NowPlayingList: React.FC<IdStateProp> = ({ changeMovieId }) => {
   const [movies, setMovies] = useState([]);
 
   const getMovies = () => {
@@ -28,7 +32,7 @@ const NowPlayingList = () => {
 
   return (
     <>
-      <MovieList movies={movies} />
+      <MovieList movies={movies} changeMovieId={changeMovieId} />
     </>
   )
 }

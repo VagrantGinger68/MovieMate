@@ -4,9 +4,10 @@ import YouTube, { YouTubeProps } from 'react-youtube';
 
 interface MovieIdProps {
   id: number,
+  changeMovieId: Function;
 }
 
-const MovieRoute: React.FC<MovieIdProps> = ({ id }) => {
+const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
   console.log(id);
   const [movie, setMovie] = useState({
     original_title: '',
@@ -166,9 +167,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id }) => {
         )
       }).slice(0, 9)}
 
-      <MovieList movies={similarMovies} />
-
-
+      <MovieList movies={similarMovies} changeMovieId={changeMovieId} />
     </>
   )
 }

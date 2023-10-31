@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css'
 import Footer from './components/Footer';
 import TopNavBar from './components/TopNavBar';
-// import HomeRoute from './routes/HomeRoute';
+import HomeRoute from './routes/HomeRoute';
 import MovieRoute from './routes/MovieRoute';
 
 const App = () => {
 
   const [movieId, setMovieId] = useState(238);
+
+  console.log(movieId);
 
   const changeMovieId = (newId: number) => {
     setMovieId(newId);
@@ -15,10 +17,9 @@ const App = () => {
 
   return (
     <div>
-      <button onClick={() => changeMovieId(278)}>Change Movie</button>
       <TopNavBar />
-      {/* <HomeRoute /> */}
-      <MovieRoute id={movieId} />
+      <HomeRoute changeMovieId={changeMovieId} />
+      <MovieRoute id={movieId} changeMovieId={changeMovieId} />
       <Footer />
     </div>
   )

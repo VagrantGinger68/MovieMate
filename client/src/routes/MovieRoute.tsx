@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import MovieList from "../components/MovieList";
 import YouTube, { YouTubeProps } from 'react-youtube';
 
+interface MovieIdProps {
+  id: number,
+}
 
-
-const MovieRoute = () => {
+const MovieRoute: React.FC<MovieIdProps> = ({ id }) => {
+  console.log(id);
   const [movie, setMovie] = useState({
     original_title: '',
     poster_path: '',
@@ -28,7 +31,7 @@ const MovieRoute = () => {
   const [trailer, setTrailer] = useState([{ type: '', site: '', key: '' }]);
 
   const getMovie = () => {
-    const url = 'https://api.themoviedb.org/3/movie/575264?language=en-US';
+    const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
     const options = {
       method: 'GET',
       headers: {
@@ -44,7 +47,7 @@ const MovieRoute = () => {
   }
 
   const getCast = () => {
-    const url = 'https://api.themoviedb.org/3/movie/575264/credits?language=en-US';
+    const url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
     const options = {
       method: 'GET',
       headers: {
@@ -63,7 +66,7 @@ const MovieRoute = () => {
   }
 
   const getSimilarMovies = () => {
-    const url = 'https://api.themoviedb.org/3/movie/575264/similar?language=en-US&page=1';
+    const url = `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`;
     const options = {
       method: 'GET',
       headers: {
@@ -79,7 +82,7 @@ const MovieRoute = () => {
   }
 
   const getTrailer = () => {
-    const url = 'https://api.themoviedb.org/3/movie/575264/videos?language=en-US';
+    const url = `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
     const options = {
       method: 'GET',
       headers: {
@@ -99,7 +102,7 @@ const MovieRoute = () => {
     getCast()
     getSimilarMovies()
     getTrailer()
-  }, [])
+  }, [id])
 
   // console.log(movie);
   // console.log(cast);
@@ -109,9 +112,7 @@ const MovieRoute = () => {
 
   const director = crew.filter((crewDirector) => crewDirector.job === 'Director');
   const writer = crew.filter(crewWriter => crewWriter.job === "Writer");
-  const firstTrailer = trailer.find((trailer) => trailer.type === "Trailer" && trailer.site === "YouTube")
-
-  console.log(firstTrailer);
+  const firstTrailer = trailer.find((trailer) => trailer.type === "Trailer" && trailer.site === "YouTube");
 
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     // access to player in all event handlers via event.target
@@ -129,8 +130,7 @@ const MovieRoute = () => {
 
   return (
     <>
-      <YouTube videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} />;
-
+      <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} />;
       <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
       <h1>{movie.original_title}</h1>
       <h4>{movie.release_date}</h4>

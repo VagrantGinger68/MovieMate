@@ -11,7 +11,7 @@ const NowPlayingList: React.FC<IdStateProp> = ({ changeMovieId, genre }) => {
 
   let tempURL = "";
   if (genre) {
-    tempURL = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&release_date.gte=2023-10-31&release_date.lte=2023-11-01&sort_by=popularity.desc&region=CA&with_genres=${genre}`
+    tempURL = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&release_date.gte=2023-10-01&release_date.lte=2023-10-31&sort_by=popularity.desc&region=CA&with_genres=${genre}`
   } else {
     tempURL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&release_date.gte=2023-10-01&release_date.lte=2023-10-31&sort_by=popularity.desc&region=CA'
   }

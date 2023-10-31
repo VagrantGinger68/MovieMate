@@ -37,11 +37,11 @@ const MovieListItem: React.FC<MovieListProps> = ({
           </div>
           <div className="flex flex-col w-48 space-y-4">
             <div className="flex justify-between items-start">
-              { title.length > 30 && 
-              <h2 className="text-3xl font-bold">{(title).slice(0,30)}...</h2>
+              {title.length > 30 &&
+                <h2 className="text-3xl font-bold">{(title).slice(0, 30)}...</h2>
               }
-              { title.length < 30 && 
-              <h2 className="text-3xl font-bold">{(title).slice(0,30)}</h2>
+              {title.length < 30 &&
+                <h2 className="text-3xl font-bold">{(title).slice(0, 30)}</h2>
               }
             </div>
             <div>
@@ -49,18 +49,18 @@ const MovieListItem: React.FC<MovieListProps> = ({
                 {release_date.slice(0, 4)}
               </div>
             </div>
-              {((vote_average) * 10) >= 80 &&
-              <div className="bg-green-400 font-bold rounded-xl p-2 w-10 text-center">{(vote_average) * 10}</div>
-              }
-              {((vote_average) * 10) < 80 && ((vote_average) * 10) >=50 &&
-              <div className="bg-yellow-400 font-bold rounded-xl p-2 w-10 text-center">{(vote_average) * 10}</div>
-              }
-              {((vote_average) * 10) < 50 && ((vote_average) * 10) > 0 &&
-              <div className="bg-red-400 font-bold rounded-xl p-2 w-10 text-center">{(vote_average) * 10}</div>
-              }
-              {((vote_average) * 10) === 0 &&
+            {((vote_average) * 10) >= 80 &&
+              <div className="bg-green-400 font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
+            }
+            {((vote_average) * 10) < 80 && ((vote_average) * 10) >= 50 &&
+              <div className="bg-yellow-400 font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
+            }
+            {((vote_average) * 10) < 50 && ((vote_average) * 10) > 0 &&
+              <div className="bg-red-400 font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
+            }
+            {((vote_average) * 10) === 0 &&
               <div className="bg-gray-400 font-bold rounded-xl p-2 w-10 text-center">NR</div>
-              }
+            }
           </div>
         </div>
       </div>

@@ -1,21 +1,10 @@
-// import CategoryList from "./CategoryList";
-
-// const TopNavBar = () => {
-//   return (
-//     <div>
-//       <span>Rotten Potatoes</span>
-//       <CategoryList />
-//       <button>Login</button>
-//       <button>Register</button>
-//     </div>
-//   )
-// }
-
-// export default TopNavBar;
-
 import CategoryList from "./CategoryList";
 
-const TopNavBar = () => {
+interface CategoryStateProp {
+  changeCategoryName: Function;
+}
+
+const TopNavBar: React.FC<CategoryStateProp> = ({ changeCategoryName }) => {
   return (
     <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full">
       <div className="mb-2 sm:mb-0">
@@ -26,7 +15,7 @@ const TopNavBar = () => {
           Rotten Potatoes
         </a>
       </div>
-      <CategoryList />
+      <CategoryList changeCategoryName={changeCategoryName} />
       <div>
         <a
           href="#"

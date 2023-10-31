@@ -3,13 +3,21 @@ import MovieList from "../MovieList";
 
 interface IdStateProp {
   changeMovieId: Function;
+  genre: number;
 }
 
-const PopularList: React.FC<IdStateProp> = ({ changeMovieId }) => {
+const PopularList: React.FC<IdStateProp> = ({ changeMovieId, genre }) => {
   const [movies, setMovies] = useState([]);
 
+  let tempURL = "";
+  if (genre) {
+    tempURL = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&region=CA&sort_by=popularity.desc&with_genres=${genre}`
+  } else {
+    tempURL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&region=CA&sort_by=popularity.desc'
+  }
+
   const getMovies = () => {
-    const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+    const url = tempURL;
     const options = {
       method: 'GET',
       headers: {
@@ -26,7 +34,7 @@ const PopularList: React.FC<IdStateProp> = ({ changeMovieId }) => {
 
   useEffect(() => {
     getMovies()
-  }, [])
+  }, [genre])
 
   console.log(movies);
 

@@ -10,7 +10,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
   changeGenre 
 }) => {
   return (
-    <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full">
+    <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full fixed">
       <div className="mb-2 sm:mb-0">
         <a
           href="/"

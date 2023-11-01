@@ -52,7 +52,7 @@ const App = () => {
           <Route path="/" element={
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-              <MovieCarousel />
+              <MovieCarousel changeMovieId={changeMovieId}/>
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>

@@ -6,6 +6,7 @@ import {
   CImage,
   CCarouselCaption,
 } from "@coreui/react";
+import { Link } from "react-router-dom";
 
 interface Movies {
   title: string,
@@ -16,7 +17,11 @@ interface Movies {
   backdrop_path: string,
 }
 
-const MovieCarousel = () => {
+interface AppProps {
+  changeMovieId: Function;
+}
+
+const MovieCarousel: React.FC<AppProps> = ({ changeMovieId }) => {
   const [movies, setMovies] = useState<Movies[]>([]);
 
   const getMovies = () => {
@@ -54,20 +59,24 @@ const MovieCarousel = () => {
   // })}
 
   return (
-    <CCarousel controls indicators className="pt-20">
+    <CCarousel controls indicators className="pt-[5em]">
       {shortMovieArray.map((movie) => {
         return (
-          <CCarouselItem key={movie.id}>
+          <CCarouselItem key={movie.id} className="h-[35em]" onClick={() => changeMovieId(movie.id)}>
+            <Link to="/movie">
             <CImage
-              className="d-block w-100"
+              className="d-block w-100 overflow-hidden"
               src={`https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`}
             />
             <CCarouselCaption className="d-none d-md-block">
-              <h1>{movie.title}</h1>
-              <h3>
+              <div>
+                <h1 className="text-7xl font-bold text-white drop-shadow-lg shadow-black">{movie.title}</h1>
+                <p className="text-3xl font-bold text-white drop-shadow-lg shadow-black">
                 {(movie.release_date).slice(0,4)}
-              </h3>
+                </p>
+              </div>
             </CCarouselCaption>
+            </Link>
           </CCarouselItem>
         );
       })}

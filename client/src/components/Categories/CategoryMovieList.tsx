@@ -14,7 +14,7 @@ interface CategoryProps {
 
 const CategoryMovieList: React.FC<CategoryProps> = ({ movies, changeMovieId }) => {
   return (
-    <div>
+    <div className="flex flex-row justify-evenly flex-wrap pt-20">
       {
         movies.map(({ title, id, poster_path, release_date, vote_average }) => {
           return (

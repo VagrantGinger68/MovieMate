@@ -35,8 +35,10 @@ const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName, ch
 
   return (
     <>
+    <div className="flex flex-row">
       <GenreList changeGenre={changeGenre} />
       {categoryComponent}
+    </div>
     </>
   )
 }

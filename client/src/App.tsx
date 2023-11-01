@@ -6,6 +6,7 @@ import HomeRoute from './routes/HomeRoute';
 import MovieRoute from './routes/MovieRoute';
 import CategoryRoute from './routes/CategoryRoute';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import MovieCarousel from './components/MovieCarousel';
 
 const App = () => {
 
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/" element={
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <MovieCarousel />
               <HomeRoute changeMovieId={changeMovieId} />
               <Footer />
             </>

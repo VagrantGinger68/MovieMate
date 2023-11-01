@@ -29,11 +29,10 @@ const MovieListItem: React.FC<MovieListProps> = ({
       <div className="py-3 sm:max-w-xl sm:mx-auto" onClick={() => changeMovieId(id)}>
         <div className="bg-white shadow-lg border-gray-100 max-h-90	 border sm:rounded-3xl p-8 flex space-x-8">
           <div className="h-100 overflow-visible w-48">
-            <img
+            {poster_path ? (<img
               className="rounded-2xl shadow-lg"
               src={`https://www.themoviedb.org/t/p/w780/${poster_path}`}
-              alt=""
-            />
+            />) : (<img className="rounded-2x1 shadow-lg" src={"https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg"} />)}
           </div>
           <div className="flex flex-col w-48 space-y-4">
             <div className="flex justify-between items-start">

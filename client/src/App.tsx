@@ -53,7 +53,7 @@ const App = () => {
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <MovieCarousel changeMovieId={changeMovieId} />
-              <SearchBar />
+              <SearchBar inNavBar={false}/>
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>

@@ -21,7 +21,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
         </a>
       </div>
       <CategoryList changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-      <SearchBar />
+      <SearchBar inNavBar={true}/>
       <div>
         <a
           href="#"

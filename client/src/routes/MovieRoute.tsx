@@ -18,6 +18,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
     runtime: 0,
     vote_average: 0,
     genres: [{ name: '' }],
+    backdrop_path: '',
   });
   const [cast, setCast] = useState([{
     profile_path: '',
@@ -129,49 +130,51 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
   };
 
   return (
-    <>
-      <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady}/>
-      <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
-      <h1>{movie.original_title}</h1>
-      <h4>{movie.release_date}</h4>
-      <p>{(movie.vote_average * 10).toFixed(0)}%</p>
-      <h4>{movie.tagline}</h4>
-      <p>{movie.overview}</p>
-      {movie.genres.map((genre, index) => {
-        return (
-          <h2 key={index}>{genre.name}</h2>
-        )
-      })}
-      <h2>Director(s):</h2>
-      {director.map((headCrew, index) => {
-        return (
-          <h3 key={index}>{headCrew.name}</h3>
-        )
-      })}
-      <p>Runtime: {movie.runtime} minutes</p>
-
-      
-      <h1 className="text-3xl font-bold">Cast</h1>
-      <div className="flex overflow-x-auto space-x-10 pt-2 pb-5">
-      {cast.map((castMember, index) => {
-        return (
-          <div key={index} className="py-3 sm:max-w-xl sm:mx-auto">
-            <div className="bg-white shadow-lg border-gray-100 h-100	 border sm:rounded-3xl p-4 flex space-x-8">
-              <div className="h-100 overflow-visible w-48 ">
+    <div className="bg-gray-100 p-4">
+      <div className="w-full max-w-screen-xl mx-auto pt-24">
+        <div className="flex items-center justify-center mb-4" style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdrop_path})` }}>
+          <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} className="my-4" />
+        </div>
+        <div className="flex items-center justify-center mb-4">
+          <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.original_title} className="w-48 h-72 rounded-lg shadow-lg" />
+          <div className="ml-6">
+            <h1 className="text-3xl font-bold">{movie.original_title}</h1>
+            <h4 className="text-sm text-gray-600">{movie.release_date}</h4>
+            <p className="text-2xl font-bold">{(movie.vote_average * 10).toFixed(0)}%</p>
+            <h4 className="text-lg font-semibold">{movie.tagline}</h4>
+            <p className="text-lg">{movie.overview}</p>
+            <div className="flex flex-wrap space-x-2">
+              {movie.genres.map((genre, index) => (
+                <span key={index} className="bg-blue-200 text-blue-800 text-sm px-2 py-1 rounded-full">{genre.name}</span>
+              ))}
+            </div>
+            <h2 className="text-xl font-bold mt-2">Director(s):</h2>
+            <div className="space-x-2">
+              {director.map((headCrew, index) => (
+                <span key={index} className="text-sm">{headCrew.name}</span>
+              ))}
+            </div>
+            <p className="text-lg mt-2">Runtime: {movie.runtime} minutes</p>
+          </div>
+        </div>
+        <h1 className="text-3xl font-bold mt-4">Cast</h1>
+        <div className="flex overflow-x-auto space-x-4 pb-5">
+          {cast.slice(0, 10).map((castMember, index) => (
+            <div key={index} className="bg-white shadow-lg border-gray-100  border sm:rounded-3xl p-4 flex space-x-8">
+             <div className="h-100 overflow-visible w-48 ">
                 {castMember.profile_path ? (<img className="rounded-2xl shadow-lg" src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />) : (<img className="rounded-2x1 shadow-lg" src={"https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg"} />)}
                   <h2 className="text-3xl font-bold pt-2">{castMember.name}</h2>
                   <h2 className="text-2xl pt-2">{castMember.character}</h2>
               </div>
             </div>
-          </div>
-        )
-      }).slice(0, 10)}
+          ))}
+        </div>
+        <h1 className="text-3xl font-bold">Similar Movies</h1>
+        <MovieList movies={similarMovies} changeMovieId={changeMovieId} />
       </div>
-
-      <h1 className="text-3xl font-bold">Similar Movies</h1>
-      <MovieList movies={similarMovies} changeMovieId={changeMovieId} />
-    </>
-  )
+    </div>
+  );
 }
 
 export default MovieRoute;
+

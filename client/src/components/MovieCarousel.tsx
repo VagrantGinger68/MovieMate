@@ -7,8 +7,17 @@ import {
   CCarouselCaption,
 } from "@coreui/react";
 
+interface Movies {
+  title: string,
+  id: number,
+  poster_path: string,
+  release_date: string,
+  vote_average: number,
+  backdrop_path: string,
+}
+
 const MovieCarousel = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movies[]>([]);
 
   const getMovies = () => {
     const url =

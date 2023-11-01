@@ -39,7 +39,7 @@ const MovieListItem: React.FC<MovieListProps> = ({
               {title.length > 30 &&
                 <h2 className="text-3xl font-bold">{(title).slice(0, 30)}...</h2>
               }
-              {title.length < 30 &&
+              {title.length <= 30 &&
                 <h2 className="text-3xl font-bold">{(title).slice(0, 30)}</h2>
               }
             </div>

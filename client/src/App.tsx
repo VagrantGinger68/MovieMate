@@ -8,6 +8,7 @@ import CategoryRoute from './routes/CategoryRoute';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import MovieCarousel from './components/MovieCarousel';
 import SearchBar from './components/SearchBar';
+import SearchRoute from './routes/SearchResults';
 
 const App = () => {
 
@@ -15,12 +16,11 @@ const App = () => {
   const [categoryName, setCategoryName] = useState("");
   const [genre, setGenre] = useState(0);
   const [displayList, setDisplayList] = useState(true);
+  const [search, setSearch] = useState("");
 
   const changeGenre = (newGenre: number) => {
     setGenre(newGenre)
   };
-
-  console.log(movieId);
 
   const changeMovieId = (newId: number) => {
     setMovieId(newId);
@@ -35,10 +35,8 @@ const App = () => {
   }
 
   const handleSearch = (newSearch: string) => {
-    (newList);
+    setSearch(newSearch);
   }
-
-
 
   return (
     <div>
@@ -54,13 +52,12 @@ const App = () => {
       <Footer /> */}
 
       <Router>
-
         <Routes>
           <Route path="/" element={
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-              <MovieCarousel changeMovieId={changeMovieId}/>
-              <SearchBar />
+              <MovieCarousel changeMovieId={changeMovieId} />
+              <SearchBar handleSearch={handleSearch} />
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
@@ -78,6 +75,13 @@ const App = () => {
               {movieId &&
                 <MovieRoute id={movieId} changeMovieId={changeMovieId} />
               }
+              <Footer />
+            </>
+          } />
+          <Route path="/search" element={
+            <>
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <SearchRoute search={search} changeMovieId={changeMovieId} />
               <Footer />
             </>
           } />

@@ -23,7 +23,7 @@ const CategoryMovieListItem: React.FC<CategoryMovieListProps> = ({
       <section>
         <div>
           <div className="py-3 sm:max-w-xl sm:mx-auto" onClick={() => changeMovieId(id)}>
-            <div className="bg-white shadow-lg border-gray-100 max-h-90	 border sm:rounded-3xl p-2 flex space-x-1">
+            <div className="dark:bg-slate-800 shadow-lg border-gray-100 max-h-90	 border sm:rounded-3xl p-2 flex space-x-1">
               <div className="h-100 overflow-visible w-48">
                 {poster_path ? (<img
                   className="rounded-2xl shadow-lg"
@@ -41,7 +41,7 @@ const CategoryMovieListItem: React.FC<CategoryMovieListProps> = ({
                   }
                 </div>
                 <div>
-                  <div className="text-lg text-gray-800">
+                  <div className="dark:text-slate-400">
                     {release_date.slice(0, 4)}
                   </div>
                 </div>

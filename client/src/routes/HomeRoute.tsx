@@ -14,7 +14,7 @@ const HomeRoute: React.FC<IdStateProp> = ({ changeMovieId, changeDisplayList, di
   changeDisplayList(true);
 
   return (
-    <div className="px-8">
+    <div className="dark:bg-slate-900 dark:text-white px-8">
       <h1 className="text-3xl font-bold">Popular</h1>
       <PopularList changeMovieId={changeMovieId} genre={0} displayHomepage={displayList} />
       <h1 className="text-3xl font-bold">Upcoming</h1>

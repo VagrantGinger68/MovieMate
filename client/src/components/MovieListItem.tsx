@@ -27,7 +27,7 @@ const MovieListItem: React.FC<MovieListProps> = ({
       </div> */}
 
       <div className="py-3 sm:max-w-xl sm:mx-auto" onClick={() => changeMovieId(id)}>
-        <div className="bg-white shadow-lg border-gray-100 max-h-90	 border sm:rounded-3xl p-8 flex space-x-8">
+        <div className="dark:bg-slate-800 shadow-lg border-gray-100 max-h-90	 border sm:rounded-3xl p-8 flex space-x-8 dark:text-white">
           <div className="h-100 overflow-visible w-48">
             {poster_path ? (<img
               className="rounded-2xl shadow-lg"
@@ -37,14 +37,14 @@ const MovieListItem: React.FC<MovieListProps> = ({
           <div className="flex flex-col w-48 space-y-4">
             <div className="flex justify-between items-start">
               {title.length > 30 &&
-                <h2 className="text-3xl font-bold">{(title).slice(0, 30)}...</h2>
+                <h2 className="text-3xl font-bold ">{(title).slice(0, 30)}...</h2>
               }
               {title.length <= 30 &&
                 <h2 className="text-3xl font-bold">{(title).slice(0, 30)}</h2>
               }
             </div>
             <div>
-              <div className="text-1xl text-gray-800">
+              <div className="text-1xl dark:text-slate-400">
                 <h3>{release_date.slice(0, 4)}</h3>
               </div>
             </div>

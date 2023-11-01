@@ -11,11 +11,11 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
   changeGenre 
 }) => {
   return (
-    <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full fixed z-10">
+    <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 dark:bg-slate-900 sm:items-baseline w-full fixed z-10">
       <div className="mb-2 sm:mb-0">
         <a
           href="/"
-          className="text-2xl no-underline text-grey-darkest hover:text-blue-dark"
+          className="text-2xl no-underline text-slate-300 hover:text-white"
         >
           Rotten Potatoes
         </a>
@@ -25,13 +25,13 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
       <div>
         <a
           href="#"
-          className="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2"
+          className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
         >
           Log In
         </a>
         <a
           href="#"
-          className="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2"
+          className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
         >
           Register
         </a>

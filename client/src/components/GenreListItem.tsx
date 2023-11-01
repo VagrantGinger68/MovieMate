@@ -9,7 +9,7 @@ interface GenreListProps {
 const GenreListItem: React.FC<GenreListProps> = ({name, changeGenre, id}) => {
   return (
     <>
-    <button onClick={() => changeGenre(id)} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> {name}</button>
+    <button onClick={() => changeGenre(id)} className="bg-transparent hover:bg-black-500 dark:text-slate-400 font-semibold hover:text-white py-2 px-4 border border-black-500 hover:border-transparent rounded"> {name}</button>
     </>
   )
 };

@@ -8,7 +8,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ inNavBar }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <form action={`search/${searchQuery}`}>
+    <form action={`search/${searchQuery}`} className={!inNavBar && "pt-8 pb-2 bg-black"}>
       {inNavBar && (
          <div className="mx-auto flex items-center border border-gray-300 rounded-2xl">
          <input
@@ -28,7 +28,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ inNavBar }) => {
        </div>
       )}
       {!inNavBar && (
-        <div className="w-3/5 mx-auto flex items-center mt-8 mb-2 border border-gray-300 rounded-2xl">
+        <div className="w-3/5 mx-auto flex items-center border border-gray-300 rounded-2xl">
           <input
             className="w-full p-2 rounded-l-2xl focus:outline-none focus:border-blue-500 "
             id="search"

@@ -130,12 +130,12 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
   };
 
   return (
-    <div className="bg-gray-100 p-4">
+    <div className="bg-black p-4">
       <div className="w-full max-w-screen-xl mx-auto pt-24">
         <div className="flex items-center justify-center mb-4" style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdrop_path})` }}>
           <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} className="my-4" />
         </div>
-        <div className="flex items-center justify-center mb-4">
+        <div className="flex items-center justify-center mb-4 text-white">
           <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.original_title} className="w-48 h-72 rounded-lg shadow-lg" />
           <div className="ml-6">
             <h1 className="text-3xl font-bold">{movie.original_title}</h1>
@@ -157,7 +157,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
             <p className="text-lg mt-2">Runtime: {movie.runtime} minutes</p>
           </div>
         </div>
-        <h1 className="text-3xl font-bold mt-4">Cast</h1>
+        <h1 className="text-3xl font-bold mt-4 text-white">Cast</h1>
         <div className="flex overflow-x-auto space-x-4 pb-5">
           {cast.slice(0, 10).map((castMember, index) => (
             <div key={index} className="dark:bg-slate-900 dark:text-white shadow-lg border-gray-100  border sm:rounded-3xl p-4 flex space-x-8">
@@ -169,7 +169,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
             </div>
           ))}
         </div>
-        <h1 className="text-3xl font-bold">Similar Movies</h1>
+        <h1 className="text-3xl font-bold text-white">Similar Movies</h1>
         <MovieList movies={similarMovies} changeMovieId={changeMovieId} />
       </div>
     </div>

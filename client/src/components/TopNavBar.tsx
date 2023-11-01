@@ -1,4 +1,5 @@
 import CategoryList from "./CategoryList";
+import SearchBar from "./SearchBar";
 
 interface CategoryStateProp {
   changeCategoryName: Function;
@@ -20,6 +21,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
         </a>
       </div>
       <CategoryList changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+      <SearchBar />
       <div>
         <a
           href="#"

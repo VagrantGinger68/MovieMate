@@ -34,10 +34,6 @@ const App = () => {
     setDisplayList(newList);
   }
 
-  const handleSearch = (newSearch: string) => {
-    setSearch(newSearch);
-  }
-
   return (
     <div>
       {/* <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
@@ -57,7 +53,7 @@ const App = () => {
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <MovieCarousel changeMovieId={changeMovieId} />
-              <SearchBar handleSearch={handleSearch} />
+              <SearchBar />
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
@@ -78,10 +74,10 @@ const App = () => {
               <Footer />
             </>
           } />
-          <Route path="/search" element={
+          <Route path="/search/:query" element={
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-              <SearchRoute search={search} changeMovieId={changeMovieId} />
+              <SearchRoute changeMovieId={changeMovieId} />
               <Footer />
             </>
           } />

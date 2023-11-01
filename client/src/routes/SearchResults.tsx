@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import CategoryMovieList from "../components/Categories/CategoryMovieList";
+import { useParams } from 'react-router-dom';
 
 interface SearchProp {
-  search: string;
   changeMovieId: Function;
 }
 
-const SearchRoute: React.FC<SearchProp> = ({ search, changeMovieId }) => {
-  console.log("Search", search);
+const SearchRoute: React.FC<SearchProp> = ({ changeMovieId }) => {
+  const { query } = useParams();
+
+  console.log("query", query);
   const [movies, setMovies] = useState([]);
 
   const getMovies = () => {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=1&region=CA`;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1&region=CA`;
     const options = {
       method: 'GET',
       headers: {
@@ -28,7 +30,8 @@ const SearchRoute: React.FC<SearchProp> = ({ search, changeMovieId }) => {
 
   useEffect(() => {
     getMovies()
-  }, [search])
+  }, [query])
+
 
   // console.log(movies);
 

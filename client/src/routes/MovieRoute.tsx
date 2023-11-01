@@ -156,7 +156,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
       {cast.map((castMember, index) => {
         return (
           <div key={index} className="py-3 sm:max-w-xl sm:mx-auto">
-            <div className="bg-white shadow-lg border-gray-100 h-100	 border sm:rounded-3xl p-4 flex space-x-8">
+            <div className="dark:bg-slate-900 dark:text-white shadow-lg border-gray-100 h-100	 border sm:rounded-3xl p-4 flex space-x-8">
               <div className="h-100 overflow-visible w-48 ">
                 {castMember.profile_path ? (<img className="rounded-2xl shadow-lg" src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />) : (<img className="rounded-2x1 shadow-lg" src={"https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg"} />)}
                   <h2 className="text-3xl font-bold pt-2">{castMember.name}</h2>

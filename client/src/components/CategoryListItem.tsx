@@ -14,7 +14,7 @@ const CategoryListItem: React.FC<CategoryListProps> = ({
 }) => {
   return (
     <Link to="/categories">
-      <span style={{ cursor: "pointer" }} onClick={() => {
+      <span className="hover:text-white text-slate-300 font-bold" style={{ cursor: "pointer" }} onClick={() => {
         changeCategoryName(name);
         changeGenre(0)
       }}>{name}</span>

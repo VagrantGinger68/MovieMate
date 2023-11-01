@@ -44,8 +44,8 @@ const MovieListItem: React.FC<MovieListProps> = ({
               }
             </div>
             <div>
-              <div className="text-lg text-gray-800">
-                {release_date.slice(0, 4)}
+              <div className="text-1xl text-gray-800">
+                <h3>{release_date.slice(0, 4)}</h3>
               </div>
             </div>
             {((vote_average) * 10) >= 80 &&

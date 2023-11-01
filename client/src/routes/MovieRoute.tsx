@@ -124,13 +124,13 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
     width: '640',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
+      autoplay: 0,
     },
   };
 
   return (
     <>
-      <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} />;
+      <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady}/>
       <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
       <h1>{movie.original_title}</h1>
       <h4>{movie.release_date}</h4>
@@ -149,16 +149,26 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
         )
       })}
       <p>Runtime: {movie.runtime} minutes</p>
+
+      
+      <h1 className="text-3xl font-bold">Cast</h1>
+      <div className="flex overflow-x-auto space-x-10 pt-2 pb-5">
       {cast.map((castMember, index) => {
         return (
-          <div key={index}>
-            <img src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />
-            <h1>{castMember.name}</h1>
-            <h2>as {castMember.character}</h2>
+          <div key={index} className="py-3 sm:max-w-xl sm:mx-auto">
+            <div className="bg-white shadow-lg border-gray-100 h-100	 border sm:rounded-3xl p-4 flex space-x-8">
+              <div className="h-100 overflow-visible w-48 ">
+                {castMember.profile_path ? (<img className="rounded-2xl shadow-lg" src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />) : (<img className="rounded-2x1 shadow-lg" src={"https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg"} />)}
+                  <h2 className="text-3xl font-bold pt-2">{castMember.name}</h2>
+                  <h2 className="text-2xl pt-2">{castMember.character}</h2>
+              </div>
+            </div>
           </div>
         )
-      }).slice(0, 9)}
+      }).slice(0, 10)}
+      </div>
 
+      <h1 className="text-3xl font-bold">Similar Movies</h1>
       <MovieList movies={similarMovies} changeMovieId={changeMovieId} />
     </>
   )

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import NowPlayingList from "../components/Categories/NowPlayingList";
 import PopularList from "../components/Categories/PopularList";
 import TopRatedList from "../components/Categories/TopRatedList";
@@ -10,36 +9,33 @@ interface CategoryProp {
   categoryName: string;
   genre: number;
   changeGenre: Function;
+  changeDisplayList: Function;
+  displayList: boolean;
 }
 
-const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName, changeGenre, genre }) => {
+const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName, changeGenre, genre, changeDisplayList, displayList }) => {
+  changeDisplayList(false);
 
-  // const [genre, setGenre] = useState(0);
-
-  // const changeGenre = (newGenre:number ) => {
-  //   setGenre(newGenre)
-  // };
-  
   let categoryComponent = null;
 
   switch (categoryName) {
     case 'Popular':
-      categoryComponent = <PopularList changeMovieId={changeMovieId} genre={genre}/>;
+      categoryComponent = <PopularList changeMovieId={changeMovieId} genre={genre} displayHomepage={displayList} />;
       break;
     case 'Upcoming':
-      categoryComponent = <UpcomingList changeMovieId={changeMovieId} genre={genre}/>;
+      categoryComponent = <UpcomingList changeMovieId={changeMovieId} genre={genre} displayHomepage={displayList} />;
       break;
     case 'Now Playing':
-      categoryComponent = <NowPlayingList changeMovieId={changeMovieId} genre={genre}/>;
+      categoryComponent = <NowPlayingList changeMovieId={changeMovieId} genre={genre} displayHomepage={displayList} />;
       break;
     case 'Top Rated':
-      categoryComponent = <TopRatedList changeMovieId={changeMovieId} genre={genre}/>;
+      categoryComponent = <TopRatedList changeMovieId={changeMovieId} genre={genre} displayHomepage={displayList} />;
       break;
   }
 
   return (
     <>
-      <GenreList changeGenre={changeGenre}/>
+      <GenreList changeGenre={changeGenre} />
       {categoryComponent}
     </>
   )

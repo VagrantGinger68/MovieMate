@@ -13,6 +13,7 @@ const App = () => {
   const [movieId, setMovieId] = useState(0);
   const [categoryName, setCategoryName] = useState("");
   const [genre, setGenre] = useState(0);
+  const [displayList, setDisplayList] = useState(true);
 
   const changeGenre = (newGenre: number) => {
     setGenre(newGenre)
@@ -26,6 +27,10 @@ const App = () => {
 
   const changeCategoryName = (newName: string) => {
     setCategoryName(newName);
+  }
+
+  const changeDisplayList = (newList: boolean) => {
+    setDisplayList(newList);
   }
 
   return (
@@ -48,14 +53,14 @@ const App = () => {
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <MovieCarousel />
-              <HomeRoute changeMovieId={changeMovieId} />
+              <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
           } />
           <Route path="/categories" element={
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-              <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre} />
+              <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
           } />

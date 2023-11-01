@@ -33,13 +33,13 @@ const GenreList: React.FC<GenreProp> = ({ changeGenre }) => {
   console.log(genres);
 
   return (
-    <>
+    <div className='flex flex-column pt-20'>
       {genres.map(({ name, id }) => {
         return (
           <GenreListItem key={id} name={name} changeGenre={changeGenre} id={id}/>
         )
       })}
-    </>
+    </div>
   );
 };
 

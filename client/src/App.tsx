@@ -7,6 +7,7 @@ import MovieRoute from './routes/MovieRoute';
 import CategoryRoute from './routes/CategoryRoute';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import MovieCarousel from './components/MovieCarousel';
+import SearchBar from './components/SearchBar';
 
 const App = () => {
 
@@ -33,6 +34,12 @@ const App = () => {
     setDisplayList(newList);
   }
 
+  const handleSearch = (newSearch: string) => {
+    (newList);
+  }
+
+
+
   return (
     <div>
       {/* <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
@@ -53,6 +60,7 @@ const App = () => {
             <>
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <MovieCarousel changeMovieId={changeMovieId}/>
+              <SearchBar />
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>

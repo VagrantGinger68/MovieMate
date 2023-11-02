@@ -121,8 +121,8 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
   }
 
   const opts: YouTubeProps['opts'] = {
-    height: '390',
-    width: '640',
+    height: '490',
+    width: '840',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 0,

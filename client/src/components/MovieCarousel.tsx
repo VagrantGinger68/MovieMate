@@ -59,7 +59,7 @@ const MovieCarousel: React.FC<AppProps> = ({ changeMovieId }) => {
   // })}
 
   return (
-    <CCarousel controls indicators className="pt-[5em]">
+    <CCarousel controls indicators className="pt-[5em] bg-black">
       {shortMovieArray.map((movie) => {
         return (
           <CCarouselItem key={movie.id} className="h-[35em]" onClick={() => changeMovieId(movie.id)}>

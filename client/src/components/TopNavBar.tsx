@@ -17,7 +17,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
           href="/"
           className="text-2xl no-underline text-slate-300 hover:text-white"
         >
-          Rotten Potatoes
+          MovieMate
         </a>
       </div>
       <CategoryList changeCategoryName={changeCategoryName} changeGenre={changeGenre} />

@@ -134,7 +134,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
         <div className="flex items-center justify-center mb-4 mt-16" style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdrop_path})` }}>
           <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} className="my-20" />
         </div>
-      <div className="w-full max-w-screen-xl mx-auto pt-24">
+      <div className="w-full max-w-screen-xl mx-auto pt-10">
         <div className="flex items-center justify-center mb-4 text-white">
           <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.original_title} className="w-48 h-72 rounded-lg shadow-lg" />
           <div className="ml-6">

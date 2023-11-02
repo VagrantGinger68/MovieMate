@@ -9,7 +9,6 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import MovieCarousel from './components/MovieCarousel';
 import SearchBar from './components/SearchBar';
 import SearchRoute from './routes/SearchResults';
-import Chat from './components/Chat';
 
 const App = () => {
 
@@ -62,13 +61,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={
             <>
-              {/* <ScrollToTop />
+              <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <MovieCarousel changeMovieId={changeMovieId} />
               <SearchBar inNavBar={false} />
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
-              <Footer /> */}
-              <Chat />
+              <Footer />
             </>
           } />
           <Route path="/categories" element={

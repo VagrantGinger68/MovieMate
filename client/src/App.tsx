@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import MovieCarousel from './components/MovieCarousel';
 import SearchBar from './components/SearchBar';
 import SearchRoute from './routes/SearchResults';
+import Login from './routes/Login';
 
 const App = () => {
 
@@ -92,6 +93,14 @@ const App = () => {
               <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <SearchRoute changeMovieId={changeMovieId} />
+              <Footer />
+            </>
+          } />
+          <Route path="/login" element={
+            <>
+              <ScrollToTop />
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <Login />
               <Footer />
             </>
           } />

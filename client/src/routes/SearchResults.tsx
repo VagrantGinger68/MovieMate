@@ -5,10 +5,9 @@ import GenreList from "../components/GenreList";
 
 interface SearchProp {
   changeMovieId: Function;
-  changeGenre: Function;
 }
 
-const SearchRoute: React.FC<SearchProp> = ({ changeMovieId, changeGenre }) => {
+const SearchRoute: React.FC<SearchProp> = ({ changeMovieId }) => {
   const { query } = useParams();
 
   console.log("query", query);

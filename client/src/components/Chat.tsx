@@ -7,6 +7,8 @@ interface MovieIdProp {
 const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
   const [messages, setMessages] = useState([]);
   const [guid, setGuid] = useState("");
+  const [filteredMessages, setFilteredMessages] = useState([]);
+
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:3000/cable");
     ws.onopen = () => {
@@ -39,6 +41,12 @@ const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
     fetchMessages();
   }, [])
 
+  useEffect(() => {
+    // Filter messages with the specific movieId
+    const filtered = messages.filter((message) => message.movieId === movieId);
+    setFilteredMessages(filtered);
+  }, [messages, movieId]); // Include movieId as a dependency
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const content = (e.target as HTMLFormElement).message.value;
@@ -70,7 +78,7 @@ const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
         <h1>Chat</h1>
       </div>
       <div className="messages text-white" id="messages">
-        {messages.map((message) =>
+        {filteredMessages.map((message) =>
           <div className="message" key={message.id}>
             <p>{message.content}</p>
           </div>
@@ -79,7 +87,7 @@ const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
       <div className="messageForm text-white">
         <form onSubmit={handleSubmit}>
           <input className="messageInput" type="text" name="message" />
-          <button className="messageButton" type="submit" >
+          <button className="messageButton" type="submit">
             Send
           </button>
         </form>

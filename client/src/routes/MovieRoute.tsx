@@ -20,6 +20,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
     vote_average: 0,
     genres: [{ name: '' }],
     backdrop_path: '',
+    id: 0
   });
   const [cast, setCast] = useState([{
     profile_path: '',
@@ -159,7 +160,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
           </div>
         </div>
         <div>
-          <Chat />
+          <Chat movieId={movie.id} />
         </div>
         <h1 className="text-3xl font-bold mt-4 text-white">Cast</h1>
         <div className="flex overflow-x-auto space-x-4 pb-5">

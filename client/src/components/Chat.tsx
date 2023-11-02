@@ -1,36 +1,39 @@
 import { useEffect, useState } from "react";
 
-const ws = new WebSocket("ws://localhost:3000/cable");
+interface MovieIdProp {
+  movieId: number;
+}
 
-const Chat = () => {
+const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
   const [messages, setMessages] = useState([]);
   const [guid, setGuid] = useState("");
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:3000/cable");
+    ws.onopen = () => {
+      console.log("Connected to websocket server");
+      setGuid(Math.random().toString(36).substring(2, 15));
 
-  ws.onopen = () => {
-    console.log("Connected to websocket server");
-    setGuid(Math.random().toString(36).substring(2, 15));
-
-    ws.send(
-      JSON.stringify({
-        command: "subscribe",
-        identifier: JSON.stringify({
-          id: guid,
-          channel: "MessagesChannel"
+      ws.send(
+        JSON.stringify({
+          command: "subscribe",
+          identifier: JSON.stringify({
+            id: guid,
+            channel: "MessagesChannel"
+          })
         })
-      })
-    )
-  }
+      )
+    }
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      if (data.type === "ping") return;
+      if (data.type === "welcome") return;
+      if (data.type === "confirm_subscription") return;
 
-  ws.onmessage = (e) => {
-    const data = JSON.parse(e.data);
-    if (data.type === "ping") return;
-    if (data.type === "welcome") return;
-    if (data.type === "confirm_subscription") return;
+      const message = data.message;
+      setMessages((prevMessages) => [...prevMessages, message]);
+    }
+  }, []);
 
-    const message = data.message;
-    console.log(data.message);
-    setMessages([...messages, message])
-  }
 
   useEffect(() => {
     fetchMessages();
@@ -39,6 +42,11 @@ const Chat = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const content = (e.target as HTMLFormElement).message.value;
+    const postData = {
+      content,
+      movieId
+    };
+
     (e.target as HTMLFormElement).message.value = "";
 
     await fetch("http://localhost:3000/messages", {
@@ -46,12 +54,11 @@ const Chat = () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ content })
+      body: JSON.stringify(postData)
     });
   }
 
   const fetchMessages = async () => {
-    console.log("Fething messages");
     const response = await fetch("http://localhost:3000/messages");
     const data = await response.json();
     setMessages(data);

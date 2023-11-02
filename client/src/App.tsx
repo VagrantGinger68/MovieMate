@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import MovieCarousel from './components/MovieCarousel';
 import SearchBar from './components/SearchBar';
 import SearchRoute from './routes/SearchResults';
+import Chat from './components/Chat';
 
 const App = () => {
 
@@ -36,11 +37,11 @@ const App = () => {
 
   function ScrollToTop() {
     const { pathname } = useLocation();
-  
+
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
-  
+
     return null;
   }
 
@@ -61,17 +62,18 @@ const App = () => {
         <Routes>
           <Route path="/" element={
             <>
-              <ScrollToTop />
+              {/* <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <MovieCarousel changeMovieId={changeMovieId} />
               <SearchBar inNavBar={false}/>
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
-              <Footer />
+              <Footer /> */}
+              <Chat />
             </>
           } />
           <Route path="/categories" element={
             <>
-            <ScrollToTop />
+              <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
@@ -79,7 +81,7 @@ const App = () => {
           } />
           <Route path="/movie" element={
             <>
-            <ScrollToTop />
+              <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               {movieId &&
                 <MovieRoute id={movieId} changeMovieId={changeMovieId} />
@@ -89,7 +91,7 @@ const App = () => {
           } />
           <Route path="/search/:query" element={
             <>
-            <ScrollToTop />
+              <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <SearchRoute changeMovieId={changeMovieId} />
               <Footer />

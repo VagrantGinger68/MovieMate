@@ -35,11 +35,13 @@ const CategoryRoute: React.FC<CategoryProp> = ({ changeMovieId, categoryName, ch
 
   return (
     <>
-    <div className="dark:bg-slate-900 dark:text-white flex flex-row">
-      <div className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 dark:bg-slate-900 shadow sm:items-baseline fixed z-5">
+    <div className="bg-black dark:text-white flex flex-row">
+      <div className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-black shadow sm:items-baseline fixed z-5">
       <GenreList changeGenre={changeGenre} />
       </div>
+      <div className="pl-60 pt-20">
       {categoryComponent}
+      </div>
     </div>
     </>
   )

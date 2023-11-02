@@ -33,7 +33,10 @@ const GenreList: React.FC<GenreProp> = ({ changeGenre }) => {
   console.log(genres);
 
   return (
-    <div className='dark:bg-slate-900 flex flex-column pt-20'>
+    <div className='bg-black flex flex-column pt-20'>
+      <div className='font-bold text-xl'>
+      Genres
+      </div>
       {genres.map(({ name, id }) => {
         return (
           <GenreListItem key={id} name={name} changeGenre={changeGenre} id={id}/>

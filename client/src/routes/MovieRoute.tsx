@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieList from "../components/MovieList";
 import YouTube, { YouTubeProps } from 'react-youtube';
+import Chat from "../components/Chat";
 
 interface MovieIdProps {
   id: number,
@@ -131,9 +132,9 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
 
   return (
     <div className="bg-black py-4">
-        <div className="flex items-center justify-center mb-4 mt-16" style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdrop_path})` }}>
-          <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} className="my-20" />
-        </div>
+      <div className="flex items-center justify-center mb-4 mt-16" style={{ backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdrop_path})` }}>
+        <YouTube key={firstTrailer?.key} videoId={firstTrailer?.key} opts={opts} onReady={onPlayerReady} className="my-20" />
+      </div>
       <div className="w-full max-w-screen-xl mx-auto pt-10">
         <div className="flex items-center justify-center mb-4 text-white">
           <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.original_title} className="w-48 h-72 rounded-lg shadow-lg" />
@@ -157,14 +158,17 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
             <p className="text-lg mt-2">Runtime: {movie.runtime} minutes</p>
           </div>
         </div>
+        <div>
+          <Chat />
+        </div>
         <h1 className="text-3xl font-bold mt-4 text-white">Cast</h1>
         <div className="flex overflow-x-auto space-x-4 pb-5">
           {cast.slice(0, 10).map((castMember, index) => (
             <div key={index} className="dark:bg-slate-900 dark:text-white shadow-lg border-gray-100  border sm:rounded-3xl p-4 flex space-x-8">
-             <div className="h-100 overflow-visible w-48 ">
+              <div className="h-100 overflow-visible w-48 ">
                 {castMember.profile_path ? (<img className="rounded-2xl shadow-lg" src={`https://image.tmdb.org/t/p/original/${castMember.profile_path}`} />) : (<img className="rounded-2x1 shadow-lg" src={"https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg"} />)}
-                  <h2 className="text-3xl font-bold pt-2">{castMember.name}</h2>
-                  <h2 className="text-2xl pt-2">{castMember.character}</h2>
+                <h2 className="text-3xl font-bold pt-2">{castMember.name}</h2>
+                <h2 className="text-2xl pt-2">{castMember.character}</h2>
               </div>
             </div>
           ))}

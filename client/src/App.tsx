@@ -65,7 +65,7 @@ const App = () => {
               {/* <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
               <MovieCarousel changeMovieId={changeMovieId} />
-              <SearchBar inNavBar={false}/>
+              <SearchBar inNavBar={false} />
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer /> */}
               <Chat />

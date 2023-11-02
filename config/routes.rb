@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :movies
+  resources :liked_movies
+  resources :users
   mount ActionCable.server => "/cable"
   resources :messages
 

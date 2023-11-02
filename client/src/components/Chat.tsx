@@ -28,6 +28,7 @@ const Chat = () => {
     if (data.type === "confirm_subscription") return;
 
     const message = data.message;
+    console.log(data.message);
     setMessages([...messages, message])
   }
 
@@ -50,6 +51,7 @@ const Chat = () => {
   }
 
   const fetchMessages = async () => {
+    console.log("Fething messages");
     const response = await fetch("http://localhost:3000/messages");
     const data = await response.json();
     setMessages(data);
@@ -58,8 +60,7 @@ const Chat = () => {
   return (
     <>
       <div className="text-white">
-        <h1>Messages</h1>
-        <p>Guid: {guid}</p>
+        <h1>Chat</h1>
       </div>
       <div className="messages text-white" id="messages">
         {messages.map((message) =>

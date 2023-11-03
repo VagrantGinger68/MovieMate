@@ -3,6 +3,7 @@ import MovieList from "../components/MovieList";
 import YouTube, { YouTubeProps } from "react-youtube";
 import Chat from "../components/Chat";
 import { useParams } from "react-router-dom";
+import LikeIcon from "../components/LikeIcon";
 
 interface MovieIdProps {
   cookies: object;
@@ -206,7 +207,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
             <h1 className="text-3xl font-bold">{movie.original_title}</h1>
             <h4 className="text-sm text-gray-600">{movie.release_date}</h4>
             <p className="text-2xl font-bold">
-              {(movie.vote_average * 10).toFixed(0)}%
+              {(movie.vote_average * 10).toFixed(0)}% <LikeIcon movieId={movie.id} />
             </p>
             <h4 className="text-lg font-semibold">{movie.tagline}</h4>
             <p className="text-lg">{movie.overview}</p>

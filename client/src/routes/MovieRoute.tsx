@@ -139,47 +139,6 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
     },
   };
 
-  const handleLike = (movieId, userId) => {
-    const data = {
-      user_id: userId,
-      movie_id: movieId,
-    };
-
-    fetch('http://localhost:3000/liked_movies', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (response.status === 201) {
-          console.log('Like created successfully');
-        } else {
-          console.error('Failed to create a like');
-        }
-      })
-      .catch((error) => {
-        console.error('Request failed:', error);
-      });
-  };
-
-  const handleMovie = (movieId) => {
-
-    fetch("http://localhost:3000/movies", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ movieId: movieId })
-    });
-  }
-
-  const handleClick = (movieId, userId) => {
-    handleMovie(movieId);
-    handleLike(movieId, userId);
-  }
-
   return (
     <div className="bg-black py-4">
       <div
@@ -220,14 +179,6 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
                   {genre.name}
                 </span>
               ))}
-            </div>
-            <div>
-              <button
-                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                onClick={() => handleClick(movie.id, 1)}
-              >
-                Like
-              </button>
             </div>
             <h2 className="text-xl font-bold mt-2">Director(s):</h2>
             <div className="space-x-2">

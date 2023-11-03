@@ -3,12 +3,11 @@ import CategoryMovieList from "./CategoryMovieList";
 import MovieList from "../MovieList";
 
 interface IdStateProp {
-  changeMovieId: Function;
   genre: number;
   displayHomepage: boolean;
 }
 
-const NowPlayingList: React.FC<IdStateProp> = ({ changeMovieId, genre, displayHomepage }) => {
+const NowPlayingList: React.FC<IdStateProp> = ({ genre, displayHomepage }) => {
   const [movies, setMovies] = useState([]);
 
   let tempURL = "";
@@ -43,10 +42,10 @@ const NowPlayingList: React.FC<IdStateProp> = ({ changeMovieId, genre, displayHo
   return (
     <>
       {!displayHomepage &&
-        <CategoryMovieList movies={movies} changeMovieId={changeMovieId} />
+        <CategoryMovieList movies={movies} />
       }
       {displayHomepage &&
-        <MovieList movies={movies} changeMovieId={changeMovieId} />
+        <MovieList movies={movies} />
       }
     </>
   )

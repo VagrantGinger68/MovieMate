@@ -14,12 +14,9 @@ import { useCookies } from 'react-cookie';
 import Logout from './routes/Logout';
 
 const App = () => {
-
-  const [movieId, setMovieId] = useState(0);
   const [categoryName, setCategoryName] = useState("");
   const [genre, setGenre] = useState(0);
   const [displayList, setDisplayList] = useState(true);
-  const [search, setSearch] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(['name']);
 
   const changeCookie = (newCookie: string) => {
@@ -32,10 +29,6 @@ const App = () => {
 
   const changeGenre = (newGenre: number) => {
     setGenre(newGenre)
-  };
-
-  const changeMovieId = (newId: number) => {
-    setMovieId(newId);
   };
 
   const changeCategoryName = (newName: string) => {
@@ -75,9 +68,9 @@ const App = () => {
             <>
               <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
-              <MovieCarousel changeMovieId={changeMovieId} />
+              <MovieCarousel />
               <SearchBar inNavBar={false} />
-              <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
+              <HomeRoute displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
           } />
@@ -85,17 +78,15 @@ const App = () => {
             <>
               <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
-              <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre} displayList={displayList} changeDisplayList={changeDisplayList} />
+              <CategoryRoute categoryName={categoryName} changeGenre={changeGenre} genre={genre} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
           } />
-          <Route path="/movie" element={
+          <Route path="/movie/:id" element={
             <>
               <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
-              {movieId &&
-                <MovieRoute id={movieId} changeMovieId={changeMovieId} cookies={cookies}/>
-              }
+              <MovieRoute cookies={cookies} />
               <Footer />
             </>
           } />
@@ -103,7 +94,7 @@ const App = () => {
             <>
               <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
-              <SearchRoute changeMovieId={changeMovieId} />
+              <SearchRoute />
               <Footer />
             </>
           } />

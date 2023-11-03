@@ -4,25 +4,24 @@ import TopRatedList from "../components/Categories/TopRatedList";
 import UpcomingList from "../components/Categories/UpcomingList";
 
 interface IdStateProp {
-  changeMovieId: Function;
   changeDisplayList: Function;
   displayList: boolean;
 }
 
 
-const HomeRoute: React.FC<IdStateProp> = ({ changeMovieId, changeDisplayList, displayList }) => {
+const HomeRoute: React.FC<IdStateProp> = ({ changeDisplayList, displayList }) => {
   changeDisplayList(true);
 
   return (
     <div className="bg-black dark:text-white px-8">
       <h1 className="text-3xl font-bold">Popular</h1>
-      <PopularList changeMovieId={changeMovieId} genre={0} displayHomepage={displayList} />
+      <PopularList genre={0} displayHomepage={displayList} />
       <h1 className="text-3xl font-bold">Upcoming</h1>
-      <UpcomingList changeMovieId={changeMovieId} genre={0} displayHomepage={displayList} />
+      <UpcomingList genre={0} displayHomepage={displayList} />
       <h1 className="text-3xl font-bold">Now Playing</h1>
-      <NowPlayingList changeMovieId={changeMovieId} genre={0} displayHomepage={displayList} />
+      <NowPlayingList genre={0} displayHomepage={displayList} />
       <h1 className="text-3xl font-bold">Top Rated</h1>
-      <TopRatedList changeMovieId={changeMovieId} genre={0} displayHomepage={displayList} />
+      <TopRatedList genre={0} displayHomepage={displayList} />
     </div>
   )
 }

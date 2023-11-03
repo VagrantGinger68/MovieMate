@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import MovieList from "../components/MovieList";
 import YouTube, { YouTubeProps } from "react-youtube";
 import Chat from "../components/Chat";
+import { useParams } from "react-router-dom";
 
 interface MovieIdProps {
-  id: number;
-  changeMovieId: Function;
   cookies: object;
 }
 
-const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
-  console.log(id);
+const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
+  const { id } = useParams();
+
   const [movie, setMovie] = useState({
     original_title: "",
     poster_path: "",
@@ -170,13 +170,13 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({movieId: movieId})
+      body: JSON.stringify({ movieId: movieId })
     });
   }
 
   const handleClick = (movieId, userId) => {
     handleMovie(movieId);
-    handleLike(movieId,userId);
+    handleLike(movieId, userId);
   }
 
   return (
@@ -223,7 +223,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
             <div>
               <button
                 className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                onClick={() => handleClick(movie.id,1)}
+                onClick={() => handleClick(movie.id, 1)}
               >
                 Like
               </button>
@@ -240,7 +240,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
           </div>
         </div>
         <div>
-          <Chat movieId={movie.id} cookies={cookies}/>
+          <Chat movieId={movie.id} cookies={cookies} />
         </div>
         <h1 className="text-3xl font-bold mt-4 text-white">Cast</h1>
         <div className="flex overflow-x-auto space-x-4 pb-5">
@@ -270,7 +270,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
           ))}
         </div>
         <h1 className="text-3xl font-bold text-white">Similar Movies</h1>
-        <MovieList movies={similarMovies} changeMovieId={changeMovieId} />
+        <MovieList movies={similarMovies} />
       </div>
     </div>
   );

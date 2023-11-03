@@ -17,11 +17,8 @@ interface Movies {
   backdrop_path: string,
 }
 
-interface AppProps {
-  changeMovieId: Function;
-}
 
-const MovieCarousel: React.FC<AppProps> = ({ changeMovieId }) => {
+const MovieCarousel = () => {
   const [movies, setMovies] = useState<Movies[]>([]);
 
   const getMovies = () => {
@@ -62,20 +59,20 @@ const MovieCarousel: React.FC<AppProps> = ({ changeMovieId }) => {
     <CCarousel controls indicators className="pt-[5em] bg-black">
       {shortMovieArray.map((movie) => {
         return (
-          <CCarouselItem key={movie.id} className="h-[35em]" onClick={() => changeMovieId(movie.id)}>
-            <Link to="/movie">
-            <CImage
-              className="d-block w-100 overflow-hidden"
-              src={`https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`}
-            />
-            <CCarouselCaption className="d-none d-md-block">
-              <div>
-                <h1 className="text-7xl font-bold text-white drop-shadow-lg shadow-black">{movie.title}</h1>
-                <p className="text-3xl font-bold text-white drop-shadow-lg shadow-black">
-                {(movie.release_date).slice(0,4)}
-                </p>
-              </div>
-            </CCarouselCaption>
+          <CCarouselItem key={movie.id} className="h-[35em]">
+            <Link to={`/movie/${movie.id}`}>
+              <CImage
+                className="d-block w-100 overflow-hidden"
+                src={`https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`}
+              />
+              <CCarouselCaption className="d-none d-md-block">
+                <div>
+                  <h1 className="text-7xl font-bold text-white drop-shadow-lg shadow-black">{movie.title}</h1>
+                  <p className="text-3xl font-bold text-white drop-shadow-lg shadow-black">
+                    {(movie.release_date).slice(0, 4)}
+                  </p>
+                </div>
+              </CCarouselCaption>
             </Link>
           </CCarouselItem>
         );

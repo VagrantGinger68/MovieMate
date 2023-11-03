@@ -3,11 +3,9 @@ import CategoryMovieList from "../components/Categories/CategoryMovieList";
 import { useParams } from 'react-router-dom';
 import GenreList from "../components/GenreList";
 
-interface SearchProp {
-  changeMovieId: Function;
-}
 
-const SearchRoute: React.FC<SearchProp> = ({ changeMovieId }) => {
+
+const SearchRoute = () => {
   const { query } = useParams();
 
   console.log("query", query);
@@ -39,11 +37,11 @@ const SearchRoute: React.FC<SearchProp> = ({ changeMovieId }) => {
   return (
     <>
       <div className="bg-black text-white pt-20">
-      <h1 className="pt-10 pl-20 font-bold text-3xl">
-        Search Results for {query}. Found {movies.length} Results!</h1>
+        <h1 className="pt-10 pl-20 font-bold text-3xl">
+          Search Results for {query}. Found {movies.length} Results!</h1>
       </div>
       <div className="bg-black text-white">
-        <CategoryMovieList movies={movies} changeMovieId={changeMovieId} />
+        <CategoryMovieList movies={movies} />
       </div>
     </>
   )

@@ -1,19 +1,41 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const LikeIcon = () => {
+interface MovieIdProp {
+  movieId: number;
+}
+
+const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
   const [like, setLike] = useState(false)
 
   const toggleLike = () => {
-    setLike(!like);
-  };
+    const url = "http://localhost:3000/liked_movies";
+    const options = {
+      method: 'POST',
+    };
+
+    fetch(url, options)
+      .then(() => setLike(!like))
+  }
+
+  useEffect(() => {
+    // Fetch the initial value of 'like' and update the state
+    fetch("http://localhost:3000/liked_movies")
+      .then(response => response.json())
+      .then(data => setLike(data.isLiked))
+      .catch(error => {
+        console.error("Error fetching 'like' status:", error);
+      });
+  }, []);
+
+
 
   return (
     <button
       type="button"
-      className={`hover:text-blue-700 border border-blue-700 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center ${like
-        ? 'bg-blue-700 text-white dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500'
-        : ''
-        }`}
+      className={`
+      hover:text-blue-700 border border-blue-700 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center
+      ${like && 'bg-blue-700 text-white dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500'}
+    `}
       onClick={toggleLike}
     >
       <svg

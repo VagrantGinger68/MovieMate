@@ -88,7 +88,7 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
   <div className="bg-gray-900 text-white p-4">
     <h1 className="text-2xl font-bold">Chat</h1>
   </div>
-  <div className="bg-gray-800 text-white px-[4em] h-64 overflow-y-scroll" ref={chatContainerRef}>
+  <div className="bg-gray-800 text-white px-[4em] pt-4 h-[50em] overflow-y-scroll" ref={chatContainerRef}>
     {filteredMessages.map((message) => (
       <div
         className={`mb-4 ${
@@ -98,12 +98,12 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
       >
         <div className="max-w-[70%]">
           {message.username === username ? (
-            <div className="bg-blue-500 text-white p-4 rounded-lg">
+            <div className="bg-blue-500 text-white p-3 rounded-lg">
               <h1 className="font-semibold text-3xl flex justify-end underline">You</h1>
-              <h2 className="text-2xl">{message.content}</h2>
+              <h2 className="text-2xl flex justify-end">{message.content}</h2>
             </div>
           ) : (
-            <div className="bg-gray-400 text-white p-4 rounded-lg">
+            <div className="bg-gray-400 text-white p-3 rounded-lg">
               <h1 className="font-semibold text-3xl underline">{message.username}</h1>
               <h2 className="text-2xl">{message.content}</h2>
             </div>

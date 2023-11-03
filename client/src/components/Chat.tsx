@@ -84,46 +84,53 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
   }
 
   return (
-    <>
-      <div className="bg-gray-900 text-white p-4">
-        <h1 className="text-2xl font-bold">Chat</h1>
+    <div>
+  <div className="bg-gray-900 text-white p-4">
+    <h1 className="text-2xl font-bold">Chat</h1>
+  </div>
+  <div className="bg-gray-800 text-white px-[4em] h-64 overflow-y-scroll" ref={chatContainerRef}>
+    {filteredMessages.map((message) => (
+      <div
+        className={`mb-4 ${
+          message.username === username ? "flex justify-end" : "flex justify-start"
+        }`}
+        key={message.id}
+      >
+        <div className="max-w-[70%]">
+          {message.username === username ? (
+            <div className="bg-blue-500 text-white p-4 rounded-lg">
+              <h1 className="font-semibold text-3xl flex justify-end underline">You</h1>
+              <h2 className="text-2xl">{message.content}</h2>
+            </div>
+          ) : (
+            <div className="bg-gray-400 text-white p-4 rounded-lg">
+              <h1 className="font-semibold text-3xl underline">{message.username}</h1>
+              <h2 className="text-2xl">{message.content}</h2>
+            </div>
+          )}
+        </div>
       </div>
-      <div className="bg-gray-800 text-white px-[4em] h-64 overflow-y-scroll" ref={chatContainerRef}>
-        {filteredMessages.map((message) => (
-          <div
-            className={`mb-4 ${
-              message.username === username ? "text-right bg-blue-500" : "text-left bg-gray-400"
-            }`}
-            key={message.id}
-          >
-            <p>
-              {message.username === username ? (
-                <span className="font-semibold">You:</span>
-              ) : (
-                <span className="font-semibold">{message.username}:</span>
-              )}{" "}
-              {message.content}
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className="bg-gray-900 p-4">
-        <form onSubmit={handleSubmit} className="flex space-x-2">
-          <input
-            className="w-full p-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none"
-            type="text"
-            name="message"
-            placeholder="Type your message..."
-          />
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
-            type="submit"
-          >
-            Send
-          </button>
-        </form>
-      </div>
-    </>
+    ))}
+  </div>
+  <div className="bg-gray-900 p-4">
+    <form onSubmit={handleSubmit} className="flex space-x-2">
+      <input
+        className="w-full p-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none"
+        type="text"
+        name="message"
+        placeholder="Type your message..."
+      />
+      <button
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+        type="submit"
+      >
+        Send
+      </button>
+    </form>
+  </div>
+</div>
+
+
   );
 };
 

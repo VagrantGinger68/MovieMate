@@ -7,3 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 User.create(name: "Bob Doe", email: "bob@bob.com", password: "123")
 User.create(name: "Jane Smith", email: "jane@jane.com", password: "123")
+
+Movie.create(movieId: 507089)
+
+# LikedMovie.create(user_id:1, movie_id: 507089)

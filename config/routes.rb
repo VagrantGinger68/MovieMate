@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable"
   resources :messages
 
+  # post '/likes', to: 'liked_movies#create'
+  # delete '/likes/movieId', to: 'liked_movies#delete'
+
+  post '/movies', to: 'movies#create'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

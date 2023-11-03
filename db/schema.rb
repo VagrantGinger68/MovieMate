@@ -25,15 +25,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_171923) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.integer "movieId"
+    t.bigint "movieId"
+    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "movies", force: :cascade do |t|
-    t.integer "movieId"
+  create_table "movies", primary_key: "movieId", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,7 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_171923) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "liked_movies", "movies"
+  add_foreign_key "liked_movies", "movies", primary_key: "movieId"
   add_foreign_key "liked_movies", "users"
-  add_foreign_key "messages", "users"
 end

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-const Login = () => {
+interface CookieProp {
+  changeCookie: Function;
+}
+
+const Login: React.FC<CookieProp> = ({ changeCookie }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [users, setUsers] = useState([]);
@@ -31,8 +35,8 @@ const Login = () => {
     for (let user of users) {
       if (user.email === email) {
         if (user.password === password) {
-          console.log("User authenticated");
-          return;
+          changeCookie(user.name)
+          window.location.replace("/");
         }
       }
     }

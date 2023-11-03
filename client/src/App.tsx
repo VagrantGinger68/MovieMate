@@ -10,6 +10,8 @@ import MovieCarousel from './components/MovieCarousel';
 import SearchBar from './components/SearchBar';
 import SearchRoute from './routes/SearchResults';
 import Login from './routes/Login';
+import { useCookies } from 'react-cookie';
+import Logout from './routes/Logout';
 
 const App = () => {
 
@@ -18,6 +20,15 @@ const App = () => {
   const [genre, setGenre] = useState(0);
   const [displayList, setDisplayList] = useState(true);
   const [search, setSearch] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(['name']);
+
+  const changeCookie = (newCookie: string) => {
+    setCookie('name', newCookie);
+  }
+
+  const destroyCookie = () => {
+    removeCookie('name');
+  }
 
   const changeGenre = (newGenre: number) => {
     setGenre(newGenre)
@@ -100,8 +111,13 @@ const App = () => {
             <>
               <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-              <Login />
+              <Login changeCookie={changeCookie} />
               <Footer />
+            </>
+          } />
+          <Route path="/logout" element={
+            <>
+              <Logout destroyCookie={destroyCookie} />
             </>
           } />
         </Routes>

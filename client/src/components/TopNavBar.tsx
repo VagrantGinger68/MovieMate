@@ -6,9 +6,9 @@ interface CategoryStateProp {
   changeGenre: Function;
 }
 
-const TopNavBar: React.FC<CategoryStateProp> = ({ 
-  changeCategoryName, 
-  changeGenre 
+const TopNavBar: React.FC<CategoryStateProp> = ({
+  changeCategoryName,
+  changeGenre
 }) => {
   return (
     <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 dark:bg-slate-900 sm:items-baseline w-full fixed z-10">
@@ -21,10 +21,10 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
         </a>
       </div>
       <CategoryList changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-      <SearchBar inNavBar={true}/>
+      <SearchBar inNavBar={true} />
       <div>
         <a
-          href="#"
+          href="/login"
           className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
         >
           Log In

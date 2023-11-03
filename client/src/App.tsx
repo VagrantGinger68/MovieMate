@@ -74,7 +74,7 @@ const App = () => {
           <Route path="/" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
               <MovieCarousel changeMovieId={changeMovieId} />
               <SearchBar inNavBar={false} />
               <HomeRoute changeMovieId={changeMovieId} displayList={displayList} changeDisplayList={changeDisplayList} />
@@ -84,7 +84,7 @@ const App = () => {
           <Route path="/categories" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
               <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
@@ -92,7 +92,7 @@ const App = () => {
           <Route path="/movie" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
               {movieId &&
                 <MovieRoute id={movieId} changeMovieId={changeMovieId} />
               }
@@ -102,7 +102,7 @@ const App = () => {
           <Route path="/search/:query" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
               <SearchRoute changeMovieId={changeMovieId} />
               <Footer />
             </>
@@ -110,7 +110,7 @@ const App = () => {
           <Route path="/login" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
               <Login changeCookie={changeCookie} />
               <Footer />
             </>

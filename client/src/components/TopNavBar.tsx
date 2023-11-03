@@ -4,11 +4,13 @@ import SearchBar from "./SearchBar";
 interface CategoryStateProp {
   changeCategoryName: Function;
   changeGenre: Function;
+  cookies: object;
 }
 
 const TopNavBar: React.FC<CategoryStateProp> = ({
   changeCategoryName,
-  changeGenre
+  changeGenre,
+  cookies
 }) => {
   return (
     <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 dark:bg-slate-900 sm:items-baseline w-full fixed z-10">
@@ -22,20 +24,33 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
       </div>
       <CategoryList changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
       <SearchBar inNavBar={true} />
-      <div>
-        <a
-          href="/login"
-          className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
-        >
-          Log In
-        </a>
-        <a
-          href="#"
-          className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
-        >
-          Register
-        </a>
-      </div>
+      {!cookies.name &&
+        <div>
+          <a
+            href="/login"
+            className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
+          >
+            Log In
+          </a>
+          <a
+            href="#"
+            className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
+          >
+            Register
+          </a>
+        </div>
+      }
+      {cookies.name &&
+        <div>
+          <h1>Logged in as: {cookies.name}</h1>
+          <a
+            href="/logout"
+            className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
+          >
+            Log Out
+          </a>
+        </div>
+      }
     </nav>
   );
 };

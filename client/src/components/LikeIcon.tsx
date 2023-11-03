@@ -9,25 +9,27 @@ const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
 
   const toggleLike = () => {
     const url = "http://localhost:3000/liked_movies";
-    const options = {
-      method: 'POST',
-    };
+    setLike(!like)
+    if (!like === true) {
 
-    fetch(url, options)
-      .then(() => setLike(!like))
-  }
+      const options = {
+        method: "POST",
+      };
 
-  useEffect(() => {
-    // Fetch the initial value of 'like' and update the state
-    fetch("http://localhost:3000/liked_movies")
+      fetch(url, options)
       .then(response => response.json())
-      .then(data => setLike(data.isLiked))
-      .catch(error => {
-        console.error("Error fetching 'like' status:", error);
-      });
-  }, []);
+      .then (data => console.log(data))
+      .then (info => console.log(info.movie_id))
+    } else {
+      const options = {
+        method: "DELETE"
+      };
+      fetch(url, options)
+      .then(response => response.json())
+      .then (data => console.log(data))
 
-
+    }
+  }
 
   return (
     <button
@@ -47,7 +49,7 @@ const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
       >
         <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
       </svg>
-      <span className="sr-only">Icon description</span>
+
     </button>
   )
 }

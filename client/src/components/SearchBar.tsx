@@ -7,9 +7,16 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ inNavBar }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const searchURL = `/search/${searchQuery}`;
+
+    window.location.replace(`${searchURL}`);
+  };
+
   return (
     <form
-      action={`search/${searchQuery}`}
+      onSubmit={handleSearch}
       className={inNavBar ? "rounded-2xl bg-black" : "pt-8 pb-2 bg-black"}
     >
       {inNavBar && (

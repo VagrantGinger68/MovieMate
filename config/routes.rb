@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # post '/likes', to: 'liked_movies#create'
   # delete '/likes/movieId', to: 'liked_movies#delete'
 
+  get "/liked_movies/find_liked_movies_id/:movie_id/:user_id", to: "liked_movies#find_liked_movies_id"
+
   post '/movies', to: 'movies#create'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

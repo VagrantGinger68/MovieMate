@@ -5,7 +5,32 @@ interface MovieIdProp {
 }
 
 const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
-  const [like, setLike] = useState(false)
+  const [like, setLike] = useState(false);
+  const [likedMoviesId, setLikedMovieId] = useState({});
+
+  console.log("Movie Id", movieId)
+
+  const getLikedMoviesId = (movieId, userId) => {
+    const data = {
+      user_id: userId,
+      movie_id: movieId,
+    };
+    const url = `http://localhost:3000/liked_movies/find_liked_movies_id/${movieId}/${userId}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        body: JSON.stringify(data),
+      }
+    };
+
+    fetch(url, options)
+      .then(res => res.json())
+      .then(json => setLikedMovieId(json))
+      .catch(err => console.error('error:' + err));
+  }
+
+  console.log(likedMoviesId)
 
   const toggleLike = (movieId, userId) => {
     const data = {
@@ -22,24 +47,24 @@ const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
         },
         body: JSON.stringify(data),
       })
-      .then((response) => {
-        if (response.status === 201) {
-          console.log('Like created successfully');
-        } else {
-          console.error('Failed to create a like');
-        }
-      })
-      .catch((error) => {
-        console.error('Request failed:', error);
-      });
+        .then((response) => {
+          if (response.status === 201) {
+            console.log('Like created successfully');
+          } else {
+            console.error('Failed to create a like');
+          }
+        })
+        .catch((error) => {
+          console.error('Request failed:', error);
+        });
     } else {
-      const url = `http://localhost:3000/liked_movies/${userId}`
+      const url = `http://localhost:3000/liked_movies/${likedMoviesId.id}`
       const options = {
         method: "DELETE"
       };
       fetch(url, options)
-      .then(response => response.json())
-      .then (data => console.log(data))
+        .then(response => response.json())
+        .then(data => console.log(data))
     }
   }
 
@@ -54,8 +79,9 @@ const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
   }
 
   const handleClick = (movieId, userId) => {
-    handleMovie(movieId);
     toggleLike(movieId, userId);
+    handleMovie(movieId);
+    getLikedMoviesId(movieId, userId);
   }
 
   return (

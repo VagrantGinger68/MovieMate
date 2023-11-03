@@ -38,6 +38,19 @@ class LikedMoviesController < ApplicationController
     @liked_movie.destroy
   end
 
+  def find_liked_movies_id
+    movie_id = params[:movie_id]
+    user_id = params[:user_id]
+    @liked_movie = LikedMovie.find_by(movie_id: movie_id, user_id: user_id)
+
+    if @liked_movie
+      render json: @liked_movie
+    else
+      render json: { error: 'LikedMovie not found' }, status: :not_found
+    end
+
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_liked_movie

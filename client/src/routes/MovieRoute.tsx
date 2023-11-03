@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MovieList from "../components/MovieList";
 import YouTube, { YouTubeProps } from "react-youtube";
 import Chat from "../components/Chat";
+import LikeIcon from "../components/LikeIcon";
 
 interface MovieIdProps {
   id: number;
@@ -170,13 +171,13 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({movieId: movieId})
+      body: JSON.stringify({ movieId: movieId })
     });
   }
 
   const handleClick = (movieId, userId) => {
     handleMovie(movieId);
-    handleLike(movieId,userId);
+    handleLike(movieId, userId);
   }
 
   return (
@@ -206,7 +207,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
             <h1 className="text-3xl font-bold">{movie.original_title}</h1>
             <h4 className="text-sm text-gray-600">{movie.release_date}</h4>
             <p className="text-2xl font-bold">
-              {(movie.vote_average * 10).toFixed(0)}%
+              {(movie.vote_average * 10).toFixed(0)}% <LikeIcon movieId={movie.id} />
             </p>
             <h4 className="text-lg font-semibold">{movie.tagline}</h4>
             <p className="text-lg">{movie.overview}</p>
@@ -223,7 +224,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
             <div>
               <button
                 className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                onClick={() => handleClick(movie.id,1)}
+                onClick={() => handleClick(movie.id, 1)}
               >
                 Like
               </button>
@@ -240,7 +241,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId, cookies }) => {
           </div>
         </div>
         <div>
-          <Chat movieId={movie.id} cookies={cookies}/>
+          <Chat movieId={movie.id} cookies={cookies} />
         </div>
         <h1 className="text-3xl font-bold mt-4 text-white">Cast</h1>
         <div className="flex overflow-x-auto space-x-4 pb-5">

@@ -94,7 +94,7 @@ const App = () => {
               <ScrollToTop />
               <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
               {movieId &&
-                <MovieRoute id={movieId} changeMovieId={changeMovieId} />
+                <MovieRoute id={movieId} changeMovieId={changeMovieId} cookies={cookies}/>
               }
               <Footer />
             </>

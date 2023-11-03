@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 
 interface MovieIdProp {
   movieId: number;
+  cookies: object
 }
 
-const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
+const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
   const [messages, setMessages] = useState([]);
   const [guid, setGuid] = useState("");
   const [filteredMessages, setFilteredMessages] = useState([]);
+  const [username, setUsername] = useState(cookies.name || "Guest");
 
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:3000/cable");
@@ -46,13 +48,14 @@ const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
     const filtered = messages.filter((message) => message.movieId === movieId);
     setFilteredMessages(filtered);
   }, [messages, movieId]); // Include movieId as a dependency
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const content = (e.target as HTMLFormElement).message.value;
     const postData = {
       content,
-      movieId
+      movieId,
+      username
     };
 
     (e.target as HTMLFormElement).message.value = "";
@@ -80,7 +83,7 @@ const Chat: React.FC<MovieIdProp> = ({ movieId }) => {
       <div className="messages text-white" id="messages">
         {filteredMessages.map((message) =>
           <div className="message" key={message.id}>
-            <p>{message.content}</p>
+            <p>{message.username} : {message.content}</p>
           </div>
         )}
       </div>

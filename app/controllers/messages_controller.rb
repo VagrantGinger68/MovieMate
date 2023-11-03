@@ -46,6 +46,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:content, :movieId, :userId)
+      params.require(:message).permit(:content, :movieId, :username)
     end
 end

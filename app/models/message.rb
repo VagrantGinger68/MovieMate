@@ -7,7 +7,8 @@ class Message < ApplicationRecord
     ActionCable.server.broadcast("MessagesChannel", {
       id:,
       content:,
-      movieId:
+      movieId:,
+      username:
     })
   end
 end

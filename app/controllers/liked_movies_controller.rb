@@ -46,6 +46,6 @@ class LikedMoviesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def liked_movie_params
-      params.fetch(:liked_movie, {})
+      params.require(:liked_movie).permit(:movie_id, :user_id)
     end
 end

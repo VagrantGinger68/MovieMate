@@ -42,7 +42,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
       }
       {cookies.name &&
         <div>
-          <h1>Logged in as: {cookies.name}</h1>
+          <span className="text-white pr-4">Logged in as: {cookies.name}</span>
           <a
             href="/logout"
             className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"

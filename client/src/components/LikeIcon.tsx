@@ -1,11 +1,12 @@
-import { useState, useEffect, useId } from "react"
+import { useState, useEffect } from "react"
 
 interface MovieIdProp {
   movieId: number;
 }
 
 const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
-  const [like, setLike] = useState(false)
+  const [like, setLike] = useState(false);
+  const [likedMoviesId, setLikedMoviesId] = useState({});
 
   const toggleLike = (movieId, userId) => {
     const data = {
@@ -22,26 +23,44 @@ const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
         },
         body: JSON.stringify(data),
       })
-      .then((response) => {
-        if (response.status === 201) {
-          console.log('Like created successfully');
-        } else {
-          console.error('Failed to create a like');
-        }
-      })
-      .catch((error) => {
-        console.error('Request failed:', error);
-      });
+        .then((response) => {
+          if (response.status === 201) {
+            console.log('Like created successfully');
+          } else {
+            console.error('Failed to create a like');
+          }
+        })
+        .catch((error) => {
+          console.error('Request failed:', error);
+        });
     } else {
-      const url = `http://localhost:3000/liked_movies/${userId}`
-      const options = {
-        method: "DELETE"
+      const urlLiked = `http://localhost:3000/liked_movies/find_by_movie_and_user/${movieId}/${1}`;
+      const optionsLiked = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
       };
-      fetch(url, options)
-      .then(response => response.json())
-      .then (data => console.log(data))
+
+      fetch(urlLiked, optionsLiked)
+        .then(res => res.json())
+        .then(json => setLikedMoviesId(json))
+        .catch(err => console.error('error:' + err));
     }
   }
+
+  useEffect(() => {
+    if (likedMoviesId.id) {
+      const url = `http://localhost:3000/liked_movies/${likedMoviesId.id}`;
+      const options = {
+        method: "DELETE",
+      };
+      fetch(url, options)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.error("error:" + err));
+    }
+  }, [likedMoviesId.id]);
 
   const handleMovie = (movieId) => {
     fetch("http://localhost:3000/movies", {

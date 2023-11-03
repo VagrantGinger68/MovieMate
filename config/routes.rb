@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post '/movies', to: 'movies#create'
 
+  get '/liked_movies/find_by_movie_and_user/:movie_id/:user_id', to: 'liked_movies#find_by_movie_and_user'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -18,9 +18,10 @@ const LikeIcon: React.FC<MovieIdProp> = ({ movieId }) => {
 
       fetch(url, options)
       .then(response => response.json())
+      .then (data => data.movie_id = 951491)
       .then (data => console.log(data))
-      .then (info => console.log(info.movie_id))
     } else {
+      const url = `http://localhost:3000/liked_movies/12`
       const options = {
         method: "DELETE"
       };

@@ -14,7 +14,6 @@ import { useCookies } from 'react-cookie';
 import Logout from './routes/Logout';
 
 const App = () => {
-  const [categoryName, setCategoryName] = useState("");
   const [genre, setGenre] = useState(0);
   const [displayList, setDisplayList] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(['name']);
@@ -30,10 +29,6 @@ const App = () => {
   const changeGenre = (newGenre: number) => {
     setGenre(newGenre)
   };
-
-  const changeCategoryName = (newName: string) => {
-    setCategoryName(newName);
-  }
 
   const changeDisplayList = (newList: boolean) => {
     setDisplayList(newList);
@@ -51,41 +46,30 @@ const App = () => {
 
   return (
     <div>
-      {/* <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
-      {/* {!movieId &&
-        <HomeRoute changeMovieId={changeMovieId} />
-      }
-      {movieId &&
-        <MovieRoute id={movieId} changeMovieId={changeMovieId} />
-      } */}
-
-      {/* <CategoryRoute changeMovieId={changeMovieId} categoryName={categoryName} changeGenre={changeGenre} genre={genre}/>
-      <Footer /> */}
-
       <Router>
         <Routes>
           <Route path="/" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
+              <TopNavBar changeGenre={changeGenre} cookies={cookies} />
               <MovieCarousel />
               <SearchBar inNavBar={false} />
               <HomeRoute displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
           } />
-          <Route path="/categories" element={
+          <Route path="/categories/:categoryName" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
-              <CategoryRoute categoryName={categoryName} changeGenre={changeGenre} genre={genre} displayList={displayList} changeDisplayList={changeDisplayList} />
+              <TopNavBar changeGenre={changeGenre} cookies={cookies} />
+              <CategoryRoute changeGenre={changeGenre} genre={genre} displayList={displayList} changeDisplayList={changeDisplayList} />
               <Footer />
             </>
           } />
           <Route path="/movie/:id" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
+              <TopNavBar changeGenre={changeGenre} cookies={cookies} />
               <MovieRoute cookies={cookies} />
               <Footer />
             </>
@@ -93,7 +77,7 @@ const App = () => {
           <Route path="/search/:query" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
+              <TopNavBar changeGenre={changeGenre} cookies={cookies} />
               <SearchRoute />
               <Footer />
             </>
@@ -101,7 +85,7 @@ const App = () => {
           <Route path="/login" element={
             <>
               <ScrollToTop />
-              <TopNavBar changeCategoryName={changeCategoryName} changeGenre={changeGenre} cookies={cookies} />
+              <TopNavBar changeGenre={changeGenre} cookies={cookies} />
               <Login changeCookie={changeCookie} />
               <Footer />
             </>

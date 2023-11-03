@@ -1,13 +1,11 @@
 import CategoryListItem from "./CategoryListItem";
 
 interface CategoryStateProp {
-  changeCategoryName: Function;
   changeGenre: Function;
 }
 
-const CategoryList: React.FC<CategoryStateProp> = ({ 
-  changeCategoryName, 
-  changeGenre 
+const CategoryList: React.FC<CategoryStateProp> = ({
+  changeGenre
 }) => {
   const categories: string[] = ["Upcoming", "Top Rated", "Popular", "Now Playing"];
 
@@ -15,7 +13,7 @@ const CategoryList: React.FC<CategoryStateProp> = ({
     <>
       {categories.map((category, index) => {
         return (
-          <CategoryListItem key={index} name={category} changeCategoryName={changeCategoryName} changeGenre={changeGenre} />
+          <CategoryListItem key={index} name={category} changeGenre={changeGenre} />
         )
       })}
     </>

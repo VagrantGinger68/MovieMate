@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import CategoryMovieList from "../components/Categories/CategoryMovieList";
 import { useParams } from 'react-router-dom';
-import GenreList from "../components/GenreList";
-
-
 
 const SearchRoute = () => {
   const { query } = useParams();

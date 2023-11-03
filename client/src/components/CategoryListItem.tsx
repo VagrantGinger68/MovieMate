@@ -3,19 +3,16 @@ import { Link } from 'react-router-dom'
 
 interface CategoryListProps {
   name: string;
-  changeCategoryName: Function;
   changeGenre: Function;
 }
 
 const CategoryListItem: React.FC<CategoryListProps> = ({
   name,
-  changeCategoryName,
   changeGenre
 }) => {
   return (
-    <Link to="/categories">
+    <Link to={`/categories/${name}`}>
       <span className="hover:text-white text-slate-300 font-bold" style={{ cursor: "pointer" }} onClick={() => {
-        changeCategoryName(name);
         changeGenre(0)
       }}>{name}</span>
     </Link>

@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import NowPlayingList from "../components/Categories/NowPlayingList";
 import PopularList from "../components/Categories/PopularList";
 import TopRatedList from "../components/Categories/TopRatedList";
@@ -5,15 +6,16 @@ import UpcomingList from "../components/Categories/UpcomingList";
 import GenreList from "../components/GenreList";
 
 interface CategoryProp {
-  categoryName: string;
   genre: number;
   changeGenre: Function;
   changeDisplayList: Function;
   displayList: boolean;
 }
 
-const CategoryRoute: React.FC<CategoryProp> = ({ categoryName, changeGenre, genre, changeDisplayList, displayList }) => {
+const CategoryRoute: React.FC<CategoryProp> = ({ changeGenre, genre, changeDisplayList, displayList }) => {
   changeDisplayList(false);
+
+  const { categoryName } = useParams();
 
   let categoryComponent = null;
 

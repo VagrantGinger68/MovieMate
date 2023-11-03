@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MovieList from "../components/MovieList";
 import YouTube, { YouTubeProps } from 'react-youtube';
 import Chat from "../components/Chat";
+import LikeIcon from "../components/LikeIcon";
 
 interface MovieIdProps {
   id: number,
@@ -29,9 +30,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
   }]);
 
   const [crew, setCrew] = useState([{ job: '', name: '' }]);
-
   const [similarMovies, setSimilarMovies] = useState([]);
-
   const [trailer, setTrailer] = useState([{ type: '', site: '', key: '' }]);
 
   const getMovie = () => {
@@ -142,7 +141,8 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
           <div className="ml-6">
             <h1 className="text-3xl font-bold">{movie.original_title}</h1>
             <h4 className="text-sm text-gray-600">{movie.release_date}</h4>
-            <p className="text-2xl font-bold">{(movie.vote_average * 10).toFixed(0)}%</p>
+            <span className="text-2xl font-bold">{(movie.vote_average * 10).toFixed(0)}%  </span> <LikeIcon/>
+
             <h4 className="text-lg font-semibold">{movie.tagline}</h4>
             <p className="text-lg">{movie.overview}</p>
             <div className="flex flex-wrap space-x-2">
@@ -157,6 +157,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ id, changeMovieId }) => {
               ))}
             </div>
             <p className="text-lg mt-2">Runtime: {movie.runtime} minutes</p>
+
           </div>
         </div>
         <div>

@@ -9,7 +9,6 @@ interface IdStateProp {
 }
 
 const HomeRoute: React.FC<IdStateProp> = ({ changeDisplayList, displayList }) => {
-  document.title="MovieMate"
 
   changeDisplayList(true);
 

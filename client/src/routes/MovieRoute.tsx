@@ -156,7 +156,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
           <img
             src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
             alt={movie.original_title}
-            className="w-72 h-84 rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg"
           />
           <div className="ml-6">
             <h1 className="text-4xl font-bold">{movie.original_title} <LikeIcon movieId={movie.id} /></h1> 

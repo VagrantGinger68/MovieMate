@@ -152,31 +152,42 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
         />
       </div>
       <div className="w-full max-w-[75%] mx-auto pt-10">
-        <div className="flex items-center justify-center mb-4 text-white">
+        <div className="flex justify-center mb-4 text-white">
           <img
             src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
             alt={movie.original_title}
-            className="w-48 h-72 rounded-lg shadow-lg"
+            className="w-72 h-84 rounded-lg shadow-lg"
           />
           <div className="ml-6">
-            <h1 className="text-3xl font-bold">{movie.original_title} <LikeIcon movieId={movie.id} /></h1> 
-            <h4 className="text-sm text-gray-600">{movie.release_date}</h4>
-            <p className="text-2xl font-bold">
-              {(movie.vote_average * 10).toFixed(0)}% 
+            <h1 className="text-4xl font-bold">{movie.original_title} <LikeIcon movieId={movie.id} /></h1> 
+            <h4 className="text-lg text-gray-600">{movie.release_date}</h4>
+            <p className="text-2xl font-bold py-4">
+            {((movie.vote_average) * 10) >= 80 &&
+              <span className="bg-green-400 font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
+            }
+            {((movie.vote_average) * 10) < 80 && ((movie.vote_average) * 10) >= 50 &&
+              <span className="bg-yellow-400 font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
+            }
+            {((movie.vote_average) * 10) < 50 && ((movie.vote_average) * 10) > 0 &&
+              <span className="bg-red-400 font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
+            }
+            {((movie.vote_average) * 10) === 0 &&
+              <span className="bg-gray-400 font-bold rounded-xl p-2 w-10 text-center">NR</span>
+            }
             </p>
-            <h4 className="text-lg font-semibold">{movie.tagline}</h4>
-            <p className="text-lg">{movie.overview}</p>
+            <h4 className="text-2xl font-semibold pb-1">{movie.tagline}</h4>
+            <p className="text-xl pb-4">{movie.overview}</p>
             <div className="flex flex-wrap space-x-2">
               {movie.genres.map((genre, index) => (
                 <span
                   key={index}
-                  className="bg-blue-200 text-blue-800 text-sm px-2 py-1 rounded-full"
+                  className="bg-white text-black text-lg px-2 py-1 rounded-full"
                 >
                   {genre.name}
                 </span>
               ))}
             </div>
-            <h2 className="text-xl font-bold mt-2">Director(s):</h2>
+            <h2 className="text-xl font-bold mt-2 pt-2">Director(s):</h2>
             <div className="space-x-2">
               {director.map((headCrew, index) => (
                 <span key={index} className="text-sm">
@@ -184,7 +195,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
                 </span>
               ))}
             </div>
-            <p className="text-lg mt-2">Runtime: {movie.runtime} minutes</p>
+            <p className="text-lg mt-4">Runtime: {movie.runtime} minutes</p>
           </div>
         </div>
         <div>

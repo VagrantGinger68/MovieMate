@@ -28,11 +28,11 @@ const SearchRoute = () => {
 
   return (
     <>
-      <div className="bg-black text-white pt-20">
+      <div className="bg-[#282828] text-white pt-20">
         <h1 className="pt-10 pl-20 font-bold text-3xl">
           Search Results for {query}. Found {movies.length} Results!</h1>
       </div>
-      <div className="bg-black text-white">
+      <div className="bg-[#282828] text-white">
         <CategoryMovieList movies={movies} />
       </div>
     </>

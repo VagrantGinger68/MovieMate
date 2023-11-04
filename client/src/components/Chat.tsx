@@ -113,14 +113,14 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
         {!chatVisible ? (
           <button
             onClick={() => toggleChat()}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+            className="bg-[#4477CE] hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
           >
             Join the Conversation!
           </button>
         ) : (
           <button
             onClick={() => toggleChat()}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+            className="bg-[#4477CE] hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
           >
             Hide the Conversation!
           </button>

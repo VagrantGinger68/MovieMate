@@ -45,7 +45,7 @@ const MovieCarousel = () => {
   const shortMovieArray = movies.slice(0, 5);
 
   return (
-    <CCarousel controls indicators className="pt-[5em] bg-black">
+    <CCarousel controls indicators className="pt-[5em] bg-[#282828]">
       {shortMovieArray.map((movie) => {
         return (
           <CCarouselItem key={movie.id} className="h-[35em]">

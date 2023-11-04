@@ -11,11 +11,11 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
   cookies
 }) => {
   return (
-    <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 dark:bg-slate-900 sm:items-baseline w-full fixed z-10">
+    <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-[#1f1f1f] sm:items-baseline w-full fixed z-10">
       <div className="mb-2 sm:mb-0">
         <a
           href="/"
-          className="text-2xl no-underline text-slate-300 hover:text-white"
+          className="text-2xl no-underline text-[#dfdfdf] hover:text-white"
         >
           MovieMate
         </a>
@@ -26,13 +26,13 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
         <div>
           <a
             href="/login"
-            className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
+            className="text-lg no-underline hover:text-[white] text-[#dfdfdf] ml-2 font-bold"
           >
             Log In
           </a>
           <a
             href="#"
-            className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
+            className="text-lg no-underline hover:text-white text-[#dfdfdf] ml-2 font-bold"
           >
             Register
           </a>
@@ -43,7 +43,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
           <span className="text-white pr-4">Logged in as: {cookies.name}</span>
           <a
             href="/logout"
-            className="text-lg no-underline hover:text-white text-slate-300 ml-2 font-bold"
+            className="text-lg no-underline hover:text-white text-[#dfdfdf] ml-2 font-bold"
           >
             Log Out
           </a>

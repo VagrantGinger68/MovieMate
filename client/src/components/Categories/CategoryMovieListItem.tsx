@@ -19,7 +19,7 @@ const CategoryMovieListItem: React.FC<CategoryMovieListProps> = ({
     <Link to={`/movie/${id}`}>
 
       <div className="py-3 sm:max-w-xl sm:mx-auto" >
-        <div className="dark:bg-slate-800 shadow-lg border-gray-100 max-h-90	 border sm:rounded-3xl p-8 flex space-x-8 dark:text-white">
+        <div className="bg-[#3f3f3f] shadow-lg border-gray-100 max-h-90	 border sm:rounded-3xl p-8 flex space-x-8 dark:text-white">
           <div className="h-100 overflow-visible w-48">
             {poster_path ? (<img
               className="rounded-2xl shadow-lg"
@@ -41,16 +41,16 @@ const CategoryMovieListItem: React.FC<CategoryMovieListProps> = ({
               </div>
             </div>
             {((vote_average) * 10) >= 80 &&
-              <div className="bg-green-400 font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
+              <div className="bg-[#4E9F3D] font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
             }
             {((vote_average) * 10) < 80 && ((vote_average) * 10) >= 50 &&
-              <div className="bg-yellow-400 font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
+              <div className="bg-[#D89216] font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
             }
             {((vote_average) * 10) < 50 && ((vote_average) * 10) > 0 &&
-              <div className="bg-red-400 font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
+              <div className="bg-[#950101] font-bold rounded-xl p-2 w-10 text-center">{((vote_average) * 10).toFixed(0)}</div>
             }
             {((vote_average) * 10) === 0 &&
-              <div className="bg-gray-400 font-bold rounded-xl p-2 w-10 text-center">NR</div>
+              <div className="bg-[#2B2B2B] font-bold rounded-xl p-2 w-10 text-center">NR</div>
             }
           </div>
         </div>

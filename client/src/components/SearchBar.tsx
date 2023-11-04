@@ -17,7 +17,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ inNavBar }) => {
   return (
     <form
       onSubmit={handleSearch}
-      className={inNavBar ? "rounded-2xl bg-black" : "pt-8 pb-2 bg-black"}
+      className={inNavBar ? "rounded-2xl bg-[#282828]" : "pt-8 pb-2 bg-[#282828]"}
     >
       {inNavBar && (
         <div className="mx-auto flex items-center border border-gray-300 rounded-2xl">
@@ -31,7 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ inNavBar }) => {
             }}
           />
           <button
-            className="p-2 bg-blue-500 text-white rounded-r-2xl hover:bg-blue-600"
+            className="p-2 bg-[#4477CE] text-white rounded-r-2xl hover:bg-blue-600"
           >
             Search
           </button>
@@ -49,7 +49,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ inNavBar }) => {
             }}
           />
           <button
-            className="p-2 bg-blue-500 text-white rounded-r-2xl hover:bg-blue-600"
+            className="p-2 bg-[#4477CE] text-white rounded-r-2xl hover:bg-blue-600"
           >
             Search
           </button>

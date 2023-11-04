@@ -136,7 +136,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
   };
 
   return (
-    <div className="bg-black py-4">
+    <div className="bg-[#282828] py-4">
       <div
         className="flex items-center justify-center mb-4 mt-16"
         style={{
@@ -160,19 +160,19 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
           />
           <div className="ml-6">
             <h1 className="text-4xl font-bold">{movie.original_title} <LikeIcon movieId={movie.id} /></h1> 
-            <h4 className="text-lg text-gray-600">{movie.release_date}</h4>
+            <h4 className="text-lg text-[#DDDDDD]">{movie.release_date}</h4>
             <p className="text-2xl font-bold py-4">
             {((movie.vote_average) * 10) >= 80 &&
-              <span className="bg-green-400 font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
+              <span className="bg-[#4E9F3D] font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
             }
             {((movie.vote_average) * 10) < 80 && ((movie.vote_average) * 10) >= 50 &&
-              <span className="bg-yellow-400 font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
+              <span className="bg-[#D89216] font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
             }
             {((movie.vote_average) * 10) < 50 && ((movie.vote_average) * 10) > 0 &&
-              <span className="bg-red-400 font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
+              <span className="bg-[#950101] font-bold rounded-xl p-2 w-10 text-center">{((movie.vote_average) * 10).toFixed(0)}</span>
             }
             {((movie.vote_average) * 10) === 0 &&
-              <span className="bg-gray-400 font-bold rounded-xl p-2 w-10 text-center">NR</span>
+              <span className="bg-[#2B2B2B] font-bold rounded-xl p-2 w-10 text-center">NR</span>
             }
             </p>
             <h4 className="text-2xl font-semibold pb-1">{movie.tagline}</h4>
@@ -181,7 +181,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
               {movie.genres.map((genre, index) => (
                 <span
                   key={index}
-                  className="bg-white text-black text-lg px-2 py-1 rounded-full"
+                  className="bg-[#4477CE] text-white text-lg px-2 py-1 rounded-full"
                 >
                   {genre.name}
                 </span>
@@ -206,7 +206,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
           {cast.slice(0, 10).map((castMember, index) => (
             <div
               key={index}
-              className="dark:bg-slate-900 dark:text-white shadow-lg border-gray-100  border sm:rounded-3xl p-4 flex space-x-8"
+              className="bg-[#3f3f3f] dark:text-white shadow-lg border-gray-100  border sm:rounded-3xl p-4 flex space-x-8"
             >
               <div className="h-100 overflow-visible w-48 ">
                 {castMember.profile_path ? (

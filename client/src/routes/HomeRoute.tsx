@@ -14,7 +14,7 @@ const HomeRoute: React.FC<IdStateProp> = ({ changeDisplayList, displayList }) =>
   changeDisplayList(true);
 
   return (
-    <div className="bg-black dark:text-white px-8">
+    <div className="bg-[#282828] dark:text-white px-8">
       <h1 className="text-3xl font-bold">Popular</h1>
       <PopularList genre={0} displayHomepage={displayList} />
       <h1 className="text-3xl font-bold">Upcoming</h1>

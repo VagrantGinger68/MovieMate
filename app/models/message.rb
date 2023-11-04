@@ -8,7 +8,8 @@ class Message < ApplicationRecord
       id:,
       content:,
       movieId:,
-      username:
+      username:,
+      created_at:
     })
   end
 end

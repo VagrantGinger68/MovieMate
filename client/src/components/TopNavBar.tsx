@@ -13,12 +13,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
   return (
     <nav className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 dark:bg-slate-900 sm:items-baseline w-full fixed z-10">
       <div className="mb-2 sm:mb-0">
-        <a
-          href="/"
-          className="text-2xl no-underline text-slate-300 hover:text-white"
-        >
-          MovieMate
-        </a>
+        <img src="https://github.com/VagrantGinger68/movies_project/blob/fix/cleanup_frontend/client/src/components/ezgif.gif" className="w-20 h-20 " /> 
       </div>
       <CategoryList changeGenre={changeGenre} />
       <SearchBar inNavBar={true} />

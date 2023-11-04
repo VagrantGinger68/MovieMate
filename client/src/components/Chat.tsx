@@ -12,6 +12,7 @@ interface Message {
   content: string;
   movieId: number;
   username: string;
+  created_at: string;
 }
 
 const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
@@ -61,10 +62,9 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
   }, [filteredMessages]);
 
   useEffect(() => {
-    // Filter messages with the specific movieId
     const filtered = messages.filter((message) => message.movieId === movieId);
     setFilteredMessages(filtered);
-  }, [messages, movieId]); // Include movieId as a dependency
+  }, [messages, movieId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,71 +96,98 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
     setChatVisible(!chatVisible);
   };
 
+  const convertTimestamp = (timestamp: string) => {
+    const date = new Date(timestamp);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12;
+
+    return `${formattedHours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+  }
+
   return (
-    <div >
+    <div>
       <div className="flex justify-center">
-        {!chatVisible && <button onClick={() => toggleChat()} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">Join the Conversation!</button>}
-      </div>
-      {chatVisible && (
-        <div>
-          <div className="flex justify-center pb-4">
-            <button onClick={() => toggleChat()} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">Hide the Conversation!</button>
-          </div>
-          <div className="bg-gray-900 text-white p-4">
-            <h1 className="text-2xl font-bold">Chat</h1>
-          </div>
-          <div
-            className="bg-gray-800 text-white px-[4em] pt-4 h-[50em] overflow-y-scroll"
-            ref={chatContainerRef}
+        {!chatVisible ? (
+          <button
+            onClick={() => toggleChat()}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
           >
-            {filteredMessages.map((message) => (
-              <div
-                className={`mb-4 ${message.username === username
+            Join the Conversation!
+          </button>
+        ) : (
+          <button
+            onClick={() => toggleChat()}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+          >
+            Hide the Conversation!
+          </button>
+        )}
+      </div>
+      <div className={` overflow-y-scroll rounded-t-xl ${chatVisible ? 'h-[51em] ease-in-out duration-700 my-4 max-w-[80%] mx-auto': 'h-0 ease-in-out duration-700 max-w-[80%] mx-auto'} transition-all`} >
+        <div className="bg-gray-900 text-white p-4">
+          <h1 className="text-2xl font-bold">Chat</h1>
+        </div>
+        <div
+          className="bg-gray-800 text-white px-[4em] pt-4 h-[40em] overflow-y-scroll"
+          ref={chatContainerRef}
+        >
+          {filteredMessages.map((message) => (
+            <div
+              className={`mb-4 ${
+                message.username === username
                   ? "flex justify-end"
                   : "flex justify-start"
-                  }`}
-                key={message.id}
-              >
-                <div className="max-w-[70%]">
-                  {message.username === username ? (
-                    <div className="bg-blue-500 text-white p-3 rounded-lg">
-                      <h1 className="font-semibold text-3xl flex justify-end underline">
-                        You
-                      </h1>
-                      <h2 className="text-2xl flex justify-end">
-                        {message.content}
-                      </h2>
-                    </div>
-                  ) : (
-                    <div className="bg-gray-400 text-white p-3 rounded-lg">
-                      <h1 className="font-semibold text-3xl underline">
-                        {message.username}
-                      </h1>
-                      <h2 className="text-2xl">{message.content}</h2>
-                    </div>
-                  )}
-                </div>
+              }`}
+              key={message.id}
+            >
+              <div className="max-w-[70%]">
+                {message.username === username ? (
+                  <div className="bg-blue-500 text-white p-3 rounded-lg">
+                    <h1 className="font-semibold text-3xl flex justify-end underline">
+                      You
+                    </h1>
+                    <h2 className="text-2xl flex justify-end">
+                      {message.content}
+                    </h2>
+                    <h2 className="text-md flex justify-end">
+                      {convertTimestamp(message.created_at)}
+                    </h2>
+                  </div>
+                ) : (
+                  <div className="bg-gray-400 text-white p-3 rounded-lg">
+                    <h1 className="font-semibold text-3xl underline">
+                      {message.username}
+                    </h1>
+                    <h2 className="text-2xl">{message.content}</h2>
+                    <h2 className="text-md">
+                      {convertTimestamp(message.created_at)}
+                    </h2>
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
-          <div className="bg-gray-900 p-4">
-            <form onSubmit={handleSubmit} className="flex space-x-2">
-              <input
-                className="w-full p-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none"
-                type="text"
-                name="message"
-                placeholder="Type your message..."
-              />
-              <button
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
-                type="submit"
-              >
-                Send
-              </button>
-            </form>
-          </div>
+            </div>
+          ))}
         </div>
-      )}
+        <div className="bg-gray-900 p-4 rounded-b-xl">
+          <form onSubmit={handleSubmit} className="flex space-x-2">
+            <input
+              className="w-full p-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none"
+              type="text"
+              name="message"
+              placeholder="Type your message..."
+            />
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              type="submit"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

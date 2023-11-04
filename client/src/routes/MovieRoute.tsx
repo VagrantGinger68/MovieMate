@@ -151,7 +151,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
           className="my-20"
         />
       </div>
-      <div className="w-full max-w-screen-xl mx-auto pt-10">
+      <div className="w-full max-w-[75%] mx-auto pt-10">
         <div className="flex items-center justify-center mb-4 text-white">
           <img
             src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
@@ -159,10 +159,10 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
             className="w-48 h-72 rounded-lg shadow-lg"
           />
           <div className="ml-6">
-            <h1 className="text-3xl font-bold">{movie.original_title}</h1>
+            <h1 className="text-3xl font-bold">{movie.original_title} <LikeIcon movieId={movie.id} /></h1> 
             <h4 className="text-sm text-gray-600">{movie.release_date}</h4>
             <p className="text-2xl font-bold">
-              {(movie.vote_average * 10).toFixed(0)}% <LikeIcon movieId={movie.id} />
+              {(movie.vote_average * 10).toFixed(0)}% 
             </p>
             <h4 className="text-lg font-semibold">{movie.tagline}</h4>
             <p className="text-lg">{movie.overview}</p>
@@ -190,7 +190,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
         <div>
           <Chat movieId={movie.id} cookies={cookies} />
         </div>
-        <h1 className="text-3xl font-bold mt-4 text-white">Cast</h1>
+        <h1 className="text-3xl font-bold mb-4 text-white">Cast</h1>
         <div className="flex overflow-x-auto space-x-4 pb-5">
           {cast.slice(0, 10).map((castMember, index) => (
             <div

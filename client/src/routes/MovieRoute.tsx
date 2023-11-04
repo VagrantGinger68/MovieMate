@@ -228,7 +228,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
             </div>
           ))}
         </div>
-        <h1 className="text-3xl font-bold text-white">Similar Movies</h1>
+        <h1 className="text-3xl font-bold text-white mt-4">Similar Movies</h1>
         <MovieList movies={similarMovies} />
       </div>
     </div>

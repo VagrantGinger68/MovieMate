@@ -126,7 +126,7 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
           </button>
         )}
       </div>
-      <div className={` overflow-y-scroll rounded-t-xl ${chatVisible ? 'h-[51em] ease-in-out duration-700 my-4 max-w-[80%] mx-auto': 'h-0 ease-in-out duration-700 max-w-[80%] mx-auto'} transition-all`} >
+      <div className={` overflow-y-hidden rounded-t-xl ${chatVisible ? 'h-[51em] ease-in-out duration-700 my-4 max-w-[80%] mx-auto': 'h-0 ease-in-out duration-700 max-w-[80%] mx-auto'} transition-all`} >
         <div className="bg-gray-900 text-white p-4">
           <h1 className="text-2xl font-bold">Chat</h1>
         </div>

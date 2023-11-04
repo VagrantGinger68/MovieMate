@@ -16,11 +16,11 @@ const HomeRoute: React.FC<IdStateProp> = ({ changeDisplayList, displayList }) =>
     <div className="bg-[#282828] dark:text-white px-8">
       <h1 className="text-3xl font-bold">Popular</h1>
       <PopularList genre={0} displayHomepage={displayList} />
-      <h1 className="text-3xl font-bold">Upcoming</h1>
+      <h1 className="text-3xl font-bold mt-4">Upcoming</h1>
       <UpcomingList genre={0} displayHomepage={displayList} />
-      <h1 className="text-3xl font-bold">Now Playing</h1>
+      <h1 className="text-3xl font-bold mt-4">Now Playing</h1>
       <NowPlayingList genre={0} displayHomepage={displayList} />
-      <h1 className="text-3xl font-bold">Top Rated</h1>
+      <h1 className="text-3xl font-bold mt-4">Top Rated</h1>
       <TopRatedList genre={0} displayHomepage={displayList} />
     </div>
   )

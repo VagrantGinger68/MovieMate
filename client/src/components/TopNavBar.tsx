@@ -6,23 +6,20 @@ interface CategoryStateProp {
   cookies: { name?: "" };
 }
 
-const TopNavBar: React.FC<CategoryStateProp> = ({
-  changeGenre,
-  cookies
-}) => {
+const TopNavBar: React.FC<CategoryStateProp> = ({ changeGenre, cookies }) => {
   return (
-    <nav className="font-sans flex flex-col sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-[#1f1f1f] sm:items-baseline w-full fixed z-10">
-      <div>
+    <nav className="font-sans flex flex-col sm:flex-row sm:text-left sm:justify-between py-4 px-4 bg-[#1f1f1f] sm:items-baseline w-full fixed z-10">
+      <span className="flex items-center">
         <a
           href="/"
           className="text-2xl no-underline text-[#dfdfdf] hover:text-white font-monoton"
         >
           MovieMate
         </a>
-      </div>
+      </span>
       <CategoryList changeGenre={changeGenre} />
       <SearchBar inNavBar={true} />
-      {!cookies.name &&
+      {!cookies.name && (
         <div>
           <a
             href="/login"
@@ -37,8 +34,8 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
             Register
           </a>
         </div>
-      }
-      {cookies.name &&
+      )}
+      {cookies.name && (
         <div>
           <span className="text-white pr-4">Logged in as: {cookies.name}</span>
           <a
@@ -48,7 +45,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({
             Log Out
           </a>
         </div>
-      }
+      )}
     </nav>
   );
 };

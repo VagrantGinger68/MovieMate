@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 interface MovieIdProp {
   movieId: number;
   cookies: {
-    name: string;
+    name?: string;
   };
 }
 
@@ -19,7 +19,7 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [guid, setGuid] = useState("");
   const [filteredMessages, setFilteredMessages] = useState<Message[]>([]);
-  const [username, setUsername] = useState(cookies.name || "Guest");
+  const [username] = useState(cookies.name || "Guest");
   const [chatVisible, setChatVisible] = useState(false);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 
 interface CategoryStateProp {
   changeGenre: Function;
-  cookies: { name: "" };
+  cookies: { name?: "" };
 }
 
 const TopNavBar: React.FC<CategoryStateProp> = ({

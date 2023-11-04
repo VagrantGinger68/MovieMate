@@ -5,9 +5,9 @@ interface CookieProp {
 }
 
 const Login: React.FC<CookieProp> = ({ changeCookie }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [users, setUsers] = useState([]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [users, setUsers] = useState([{ email: "", password: "", name: "" }]);
 
   const getUsers = () => {
     const url = "http://localhost:3000/users";
@@ -28,7 +28,7 @@ const Login: React.FC<CookieProp> = ({ changeCookie }) => {
     getUsers();
   }, []);
 
-  const handleClick = (e) => {
+  const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     for (let user of users) {
       if (user.email === email) {

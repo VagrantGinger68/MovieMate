@@ -7,7 +7,7 @@ import LikeIcon from "../components/LikeIcon";
 
 interface MovieIdProps {
   cookies: {
-    name: string;
+    name?: string;
   }
 }
 

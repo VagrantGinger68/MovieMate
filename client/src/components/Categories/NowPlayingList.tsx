@@ -34,10 +34,8 @@ const NowPlayingList: React.FC<IdStateProp> = ({ genre, displayHomepage }) => {
   }
 
   useEffect(() => {
-    getMovies()
-  }, [genre])
-
-  console.log(movies);
+    getMovies();
+  }, [genre]);
 
   return (
     <>

@@ -44,17 +44,6 @@ const MovieCarousel = () => {
 
   const shortMovieArray = movies.slice(0, 5);
 
-  console.log(shortMovieArray);
-
-  // {shortMovieArray.map((movie) => {
-  //   return (
-  //     <>
-  //       <img src={`https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`}/>
-  //       <h1>{movie.title}</h1>
-  //     </>
-  //   )
-  // })}
-
   return (
     <CCarousel controls indicators className="pt-[5em] bg-black">
       {shortMovieArray.map((movie) => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useState } from "react";
 import GenreListItem from "./GenreListItem";
 
@@ -27,19 +26,22 @@ const GenreList: React.FC<GenreProp> = ({ changeGenre }) => {
   }
 
   useEffect(() => {
-    getGenres()
-  }, [])
-
-  console.log(genres);
+    getGenres();
+  }, []);
 
   return (
     <div className='bg-black flex flex-column pt-20'>
       <div className='font-bold text-xl'>
-      Genres
+        Genres
       </div>
       {genres.map(({ name, id }) => {
         return (
-          <GenreListItem key={id} name={name} changeGenre={changeGenre} id={id}/>
+          <GenreListItem
+            key={id}
+            name={name}
+            changeGenre={changeGenre}
+            id={id}
+          />
         )
       })}
     </div>

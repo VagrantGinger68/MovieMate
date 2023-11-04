@@ -2,14 +2,23 @@ import { useEffect, useRef, useState } from "react";
 
 interface MovieIdProp {
   movieId: number;
-  cookies: object;
+  cookies: {
+    name: string;
+  };
+}
+
+interface Message {
+  id: number;
+  content: string;
+  movieId: number;
+  username: string;
 }
 
 const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [guid, setGuid] = useState("");
-  const [filteredMessages, setFilteredMessages] = useState([]);
+  const [filteredMessages, setFilteredMessages] = useState<Message[]>([]);
   const [username, setUsername] = useState(cookies.name || "Guest");
   const [chatVisible, setChatVisible] = useState(false);
 
@@ -89,13 +98,13 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
 
   return (
     <div >
-    <div className="flex justify-center">
-      {!chatVisible &&<button onClick={() => toggleChat()} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">Join the Conversation!</button>}
+      <div className="flex justify-center">
+        {!chatVisible && <button onClick={() => toggleChat()} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">Join the Conversation!</button>}
       </div>
       {chatVisible && (
         <div>
           <div className="flex justify-center pb-4">
-          <button onClick={() => toggleChat()} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">Hide the Conversation!</button>
+            <button onClick={() => toggleChat()} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">Hide the Conversation!</button>
           </div>
           <div className="bg-gray-900 text-white p-4">
             <h1 className="text-2xl font-bold">Chat</h1>
@@ -106,11 +115,10 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
           >
             {filteredMessages.map((message) => (
               <div
-                className={`mb-4 ${
-                  message.username === username
-                    ? "flex justify-end"
-                    : "flex justify-start"
-                }`}
+                className={`mb-4 ${message.username === username
+                  ? "flex justify-end"
+                  : "flex justify-start"
+                  }`}
                 key={message.id}
               >
                 <div className="max-w-[70%]">

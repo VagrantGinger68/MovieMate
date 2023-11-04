@@ -12,7 +12,12 @@ interface CategoryProp {
   displayList: boolean;
 }
 
-const CategoryRoute: React.FC<CategoryProp> = ({ changeGenre, genre, changeDisplayList, displayList }) => {
+const CategoryRoute: React.FC<CategoryProp> = ({
+  changeGenre,
+  genre,
+  changeDisplayList,
+  displayList
+}) => {
   changeDisplayList(false);
 
   const { categoryName } = useParams();
@@ -21,16 +26,24 @@ const CategoryRoute: React.FC<CategoryProp> = ({ changeGenre, genre, changeDispl
 
   switch (categoryName) {
     case 'Popular':
-      categoryComponent = <PopularList genre={genre} displayHomepage={displayList} />;
+      categoryComponent = <PopularList
+        genre={genre}
+        displayHomepage={displayList} />;
       break;
     case 'Upcoming':
-      categoryComponent = <UpcomingList genre={genre} displayHomepage={displayList} />;
+      categoryComponent = <UpcomingList
+        genre={genre}
+        displayHomepage={displayList} />;
       break;
     case 'Now Playing':
-      categoryComponent = <NowPlayingList genre={genre} displayHomepage={displayList} />;
+      categoryComponent = <NowPlayingList
+        genre={genre}
+        displayHomepage={displayList} />;
       break;
     case 'Top Rated':
-      categoryComponent = <TopRatedList genre={genre} displayHomepage={displayList} />;
+      categoryComponent = <TopRatedList
+        genre={genre}
+        displayHomepage={displayList} />;
       break;
   }
 

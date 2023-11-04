@@ -25,10 +25,8 @@ const Login: React.FC<CookieProp> = ({ changeCookie }) => {
   }
 
   useEffect(() => {
-    getUsers()
-  }, [])
-
-  console.log(users);
+    getUsers();
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -42,9 +40,6 @@ const Login: React.FC<CookieProp> = ({ changeCookie }) => {
     }
     console.log("Login failed");
   }
-
-  console.log("email", email);
-  console.log("password", password);
 
   return (
     <form className="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">

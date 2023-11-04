@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 
 const SearchRoute = () => {
   const { query } = useParams();
-
-  console.log("query", query);
   const [movies, setMovies] = useState([]);
 
   const getMovies = () => {
@@ -25,11 +23,8 @@ const SearchRoute = () => {
   }
 
   useEffect(() => {
-    getMovies()
-  }, [query])
-
-
-  // console.log(movies);
+    getMovies();
+  }, [query]);
 
   return (
     <>

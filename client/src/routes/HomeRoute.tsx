@@ -8,7 +8,6 @@ interface IdStateProp {
   displayList: boolean;
 }
 
-
 const HomeRoute: React.FC<IdStateProp> = ({ changeDisplayList, displayList }) => {
   changeDisplayList(true);
 

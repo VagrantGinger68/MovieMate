@@ -6,7 +6,9 @@ import { useParams } from "react-router-dom";
 import LikeIcon from "../components/LikeIcon";
 
 interface MovieIdProps {
-  cookies: object;
+  cookies: {
+    name: string;
+  }
 }
 
 const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
@@ -111,12 +113,6 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
     getSimilarMovies();
     getTrailer();
   }, [id]);
-
-  // console.log(movie);
-  // console.log(cast);
-  // console.log(crew);
-  // console.log(similarMovies);
-  // console.log(trailer);
 
   const director = crew.filter(
     (crewDirector) => crewDirector.job === "Director"

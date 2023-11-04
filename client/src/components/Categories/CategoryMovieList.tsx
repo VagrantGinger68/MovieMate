@@ -1,14 +1,14 @@
 import CategoryMovieListItem from "./CategoryMovieListItem";
 
+interface CategoryProps {
+  movies: Movies[]
+}
 interface Movies {
   title: string,
   id: number,
   poster_path: string,
   release_date: string,
   vote_average: number
-}
-interface CategoryProps {
-  movies: Movies[]
 }
 
 const CategoryMovieList: React.FC<CategoryProps> = ({ movies }) => {

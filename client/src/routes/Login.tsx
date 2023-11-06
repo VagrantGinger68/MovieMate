@@ -61,7 +61,7 @@ const Login: React.FC<CookieProp> = ({ changeCookie }) => {
             onChange={(e) => (setPassword(e.target.value))}
           />
         </div>
-        <button onClick={handleClick} className="transform rounded-sm bg-[#4477CE] py-2 font-bold duration-300 hover:bg-indigo-400">
+        <button onClick={handleClick} className="transform rounded-sm bg-[#4477CE] py-2 font-bold duration-300 hover:bg-blue-600">
           LOG IN
         </button>
       </section>

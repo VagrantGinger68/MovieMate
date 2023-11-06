@@ -159,7 +159,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
             className="rounded-lg shadow-lg"
           />
           <div className="ml-6">
-            <h1 className="text-4xl font-bold">{movie.original_title} <LikeIcon movieId={movie.id} /></h1> 
+            <h1 className="text-4xl font-bold flex">{movie.original_title}<LikeIcon movieId={movie.id}/></h1> 
             <h4 className="text-lg text-[#DDDDDD]">{movie.release_date}</h4>
             <p className="text-2xl font-bold py-4">
             {((movie.vote_average) * 10) >= 80 &&

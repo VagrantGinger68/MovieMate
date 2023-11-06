@@ -32,7 +32,7 @@ const GenreList: React.FC<GenreProp> = ({ changeGenre, selectedGenre }) => {
   return (
     <div className='bg-[#282828] flex flex-column pt-20 font-bold text-xl'>
       Genres
-      <div className='bg-[#3f3f3f] flex flex-column'>
+      <div className='bg-[#282828] flex flex-column'>
         {genres.map(({ name, id }) => {
           return (
             <GenreListItem

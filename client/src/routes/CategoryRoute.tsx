@@ -59,7 +59,7 @@ const CategoryRoute: React.FC<CategoryProp> = ({
         <div className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 pl-7 bg-[#282828] fixed z-5">
           <GenreList changeGenre={changeGenre} selectedGenre={selectedGenre} />
         </div>
-        <div className="pl-[12em] pt-[7em]">
+        <div className="pl-[14em] pt-[7em]">
           {categoryComponent}
         </div>
       </div>

@@ -51,7 +51,7 @@ const MovieCarousel = () => {
           <CCarouselItem key={movie.id} className="h-[35em]">
             <Link to={`/movie/${movie.id}`}>
               <CImage
-                className="d-block w-100 overflow-hidden"
+                className="d-block w-100 overflow-hidden absolute top-0 -mt-[10em]"
                 src={`https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`}
               />
               <CCarouselCaption className="d-none d-md-block">

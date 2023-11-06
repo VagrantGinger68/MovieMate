@@ -36,7 +36,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
 
   const [crew, setCrew] = useState([{ job: "", name: "" }]);
 
-  const [similarMovies, setSimilarMovies] = useState([]);
+  const [recommendedMovies, setRecommendedMovies] = useState([]);
 
   const [trailer, setTrailer] = useState([{ type: "", site: "", key: "" }]);
 
@@ -75,8 +75,8 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
       .catch((err) => console.error("error:" + err));
   };
 
-  const getSimilarMovies = () => {
-    const url = `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`;
+  const getRecommendedMovies = () => {
+    const url = `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`;
     const options = {
       method: "GET",
       headers: {
@@ -87,7 +87,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
 
     fetch(url, options)
       .then((res) => res.json())
-      .then((json) => setSimilarMovies(json.results))
+      .then((json) => setRecommendedMovies(json.results))
       .catch((err) => console.error("error:" + err));
   };
 
@@ -110,7 +110,7 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
   useEffect(() => {
     getMovie();
     getCast();
-    getSimilarMovies();
+    getRecommendedMovies();
     getTrailer();
   }, [id]);
 
@@ -228,8 +228,9 @@ const MovieRoute: React.FC<MovieIdProps> = ({ cookies }) => {
             </div>
           ))}
         </div>
-        <h1 className="text-3xl font-bold text-white mt-4">Similar Movies</h1>
-        <MovieList movies={similarMovies} />
+        <h1 className="text-3xl font-bold text-white mt-4">Recommended Movies</h1>
+        {recommendedMovies.length === 0 ? <h1 className="text-white pt-2 text-xl">There are no recommended movies yet. Check back soon!</h1> : <span></span>}
+        <MovieList movies={recommendedMovies} />
       </div>
     </div>
   );

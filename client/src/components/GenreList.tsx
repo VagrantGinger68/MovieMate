@@ -3,10 +3,10 @@ import GenreListItem from "./GenreListItem";
 
 interface GenreProp {
   changeGenre: Function;
+  selectedGenre: number;
 }
 
-const GenreList: React.FC<GenreProp> = ({ changeGenre }) => {
-
+const GenreList: React.FC<GenreProp> = ({ changeGenre, selectedGenre }) => {
   const [genres, setGenres] = useState([]);
 
   const getGenres = () => {
@@ -30,20 +30,21 @@ const GenreList: React.FC<GenreProp> = ({ changeGenre }) => {
   }, []);
 
   return (
-    <div className='bg-[#282828] flex flex-column pt-20'>
-      <div className='font-bold text-xl'>
-        Genres
+    <div className='bg-[#282828] flex flex-column pt-20 font-bold text-xl'>
+      Genres
+      <div className='bg-[#3f3f3f] flex flex-column'>
+        {genres.map(({ name, id }) => {
+          return (
+            <GenreListItem
+              key={id}
+              name={name}
+              changeGenre={changeGenre}
+              id={id}
+              isSelected={id === selectedGenre}
+            />
+          )
+        })}
       </div>
-      {genres.map(({ name, id }) => {
-        return (
-          <GenreListItem
-            key={id}
-            name={name}
-            changeGenre={changeGenre}
-            id={id}
-          />
-        )
-      })}
     </div>
   );
 };

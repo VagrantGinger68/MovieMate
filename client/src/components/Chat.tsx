@@ -15,12 +15,22 @@ interface Message {
   created_at: string;
 }
 
+function generateRandomString(length: number) {
+  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    result += charset[randomIndex];
+  }
+  return result;
+}
+
 const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [guid, setGuid] = useState("");
   const [filteredMessages, setFilteredMessages] = useState<Message[]>([]);
-  const [username] = useState(cookies.name || "Guest");
+  const [username] = useState(cookies.name || `Guest-${generateRandomString(5)}`);
   const [chatVisible, setChatVisible] = useState(false);
 
   useEffect(() => {
@@ -126,7 +136,7 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
           </button>
         )}
       </div>
-      <div className={` overflow-y-hidden rounded-t-xl ${chatVisible ? 'h-[51em] ease-in-out duration-700 my-4 max-w-[80%] mx-auto': 'h-0 ease-in-out duration-700 max-w-[80%] mx-auto'} transition-all`} >
+      <div className={` overflow-y-hidden rounded-t-xl ${chatVisible ? 'h-[51em] ease-in-out duration-700 my-4 max-w-[80%] mx-auto' : 'h-0 ease-in-out duration-700 max-w-[80%] mx-auto'} transition-all`} >
         <div className="bg-gray-900 text-white p-4">
           <h1 className="text-2xl font-bold">Chat</h1>
         </div>
@@ -136,11 +146,10 @@ const Chat: React.FC<MovieIdProp> = ({ movieId, cookies }) => {
         >
           {filteredMessages.map((message) => (
             <div
-              className={`mb-4 ${
-                message.username === username
-                  ? "flex justify-end"
-                  : "flex justify-start"
-              }`}
+              className={`mb-4 ${message.username === username
+                ? "flex justify-end"
+                : "flex justify-start"
+                }`}
               key={message.id}
             >
               <div className="max-w-[70%]">

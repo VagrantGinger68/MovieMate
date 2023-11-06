@@ -10,10 +10,10 @@ const CategoryList: React.FC<CategoryStateProp> = ({
   currentCategory
 }) => {
   const categories: string[] = [
-    "Upcoming",
-    "Top Rated",
     "Popular",
-    "Now Playing"
+    "Upcoming",
+    "Now Playing",
+    "Top Rated"
   ];
 
   return (

@@ -1,6 +1,6 @@
 import CategoryList from "./CategoryList";
 import SearchBar from "./SearchBar";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 interface CategoryStateProp {
   changeGenre: Function;
@@ -8,9 +8,13 @@ interface CategoryStateProp {
 }
 
 const TopNavBar: React.FC<CategoryStateProp> = ({ changeGenre, cookies }) => {
+  const { categoryName } = useParams();
+
+  const currentCategory: string = categoryName || "";
+
   return (
     <nav className="flex flex-col sm:flex-row sm:text-left sm:justify-between py-4 px-4 bg-[#1f1f1f] sm:items-baseline w-full fixed z-10"
-    style={{'alignItems': 'center'}}>
+      style={{ 'alignItems': 'center' }}>
       <a
         href="/"
         className="text-2xl no-underline text-[#dfdfdf] hover:text-white font-monoton "
@@ -33,7 +37,7 @@ const TopNavBar: React.FC<CategoryStateProp> = ({ changeGenre, cookies }) => {
           <span className="pl-2">MovieMate</span>
         </span>
       </a>
-      <CategoryList changeGenre={changeGenre} />
+      <CategoryList changeGenre={changeGenre} currentCategory={currentCategory} />
       <SearchBar inNavBar={true} />
       {!cookies.name && (
         <div>

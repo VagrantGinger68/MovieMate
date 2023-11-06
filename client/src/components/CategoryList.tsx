@@ -2,10 +2,12 @@ import CategoryListItem from "./CategoryListItem";
 
 interface CategoryStateProp {
   changeGenre: Function;
+  currentCategory: string;
 }
 
 const CategoryList: React.FC<CategoryStateProp> = ({
-  changeGenre
+  changeGenre,
+  currentCategory
 }) => {
   const categories: string[] = [
     "Upcoming",
@@ -22,6 +24,7 @@ const CategoryList: React.FC<CategoryStateProp> = ({
             key={index}
             name={category}
             changeGenre={changeGenre}
+            isSelected={currentCategory === category}
           />
         )
       })}

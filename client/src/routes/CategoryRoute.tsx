@@ -4,6 +4,7 @@ import PopularList from "../components/Categories/PopularList";
 import TopRatedList from "../components/Categories/TopRatedList";
 import UpcomingList from "../components/Categories/UpcomingList";
 import GenreList from "../components/GenreList";
+import { useEffect, useState } from "react";
 
 interface CategoryProp {
   genre: number;
@@ -19,6 +20,11 @@ const CategoryRoute: React.FC<CategoryProp> = ({
   displayList
 }) => {
   changeDisplayList(false);
+  const [selectedGenre, setSelectedGenre] = useState(0);
+
+  useEffect(() => {
+    setSelectedGenre(genre);
+  }, [genre])
 
   const { categoryName } = useParams();
 
@@ -51,7 +57,7 @@ const CategoryRoute: React.FC<CategoryProp> = ({
     <>
       <div className="bg-[#282828] dark:text-white flex flex-row min-h-screen">
         <div className="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 pl-7 bg-[#282828] fixed z-5">
-          <GenreList changeGenre={changeGenre} />
+          <GenreList changeGenre={changeGenre} selectedGenre={selectedGenre} />
         </div>
         <div className="pl-[12em] pt-[7em]">
           {categoryComponent}
